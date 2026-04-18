@@ -1,0 +1,80 @@
+<div appReveal class="page-container max-w-[1100px] pb-16 pt-8 md:pt-12">
+	<app-section-heading
+		eyebrow="Demo"
+		title="See AI Employee Force in action"
+		subtitle="Walk through the agent marketplace, deployment model, and governance controls your security team will ask about."
+	/>
+
+	<div class="mt-2 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+		<section
+			class="rounded-[22px] border border-slate-200/80 bg-white/70 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50 md:p-8"
+			aria-labelledby="demo-form-title"
+		>
+			<h2 id="demo-form-title" class="mb-5 text-xl font-bold text-slate-900 dark:text-slate-100">Request a live session</h2>
+			@if (submitted()) {
+				<div
+					class="mb-5 rounded-xl border border-cyan-400/35 bg-cyan-500/10 px-4 py-3 dark:bg-cyan-500/5"
+					role="status"
+					aria-live="polite"
+				>
+					<strong class="mb-1 block text-slate-900 dark:text-slate-100">Demo request received.</strong>
+					<p class="m-0 text-sm text-slate-600 dark:text-slate-400">
+						We'll reach out shortly to schedule a session that matches your interests.
+					</p>
+				</div>
+			}
+			<form class="flex flex-col gap-4" (submit)="$event.preventDefault(); requestDemo()" [hidden]="submitted()" aria-label="Demo request">
+				<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400">
+					Work email
+					<input
+						class="form-input"
+						type="email"
+						name="email"
+						[(ngModel)]="email"
+						required
+						autocomplete="email"
+					/>
+				</label>
+				<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400">
+					Company
+					<input class="form-input" name="company" [(ngModel)]="company" autocomplete="organization" />
+				</label>
+				<fieldset class="rounded-xl border border-slate-300 p-4 dark:border-white/15">
+					<legend class="px-1 text-sm font-semibold text-slate-600 dark:text-slate-400">Primary interest</legend>
+					<label class="mb-2 flex cursor-pointer items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+						<input type="radio" name="interest" value="marketplace" [(ngModel)]="interest" />
+						Agent marketplace
+					</label>
+					<label class="mb-2 flex cursor-pointer items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+						<input type="radio" name="interest" value="orchestration" [(ngModel)]="interest" />
+						Orchestration
+					</label>
+					<label class="mb-2 flex cursor-pointer items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+						<input type="radio" name="interest" value="governance" [(ngModel)]="interest" />
+						Governance &amp; audit
+					</label>
+					<label class="flex cursor-pointer items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+						<input type="radio" name="interest" value="other" [(ngModel)]="interest" />
+						Other
+					</label>
+				</fieldset>
+				<button
+					type="submit"
+					class="w-full rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-cyan-500/25 outline-none transition focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0b0a14]"
+				>
+					Request demo
+				</button>
+			</form>
+		</section>
+		<aside class="rounded-[22px] border border-slate-200/80 bg-white/70 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50 md:p-8" aria-label="What to expect">
+			<h2 class="mb-4 text-xl font-bold text-slate-900 dark:text-slate-100">What we cover</h2>
+			<ul class="mb-6 list-disc space-y-2 pl-5 text-slate-600 dark:text-slate-400">
+				<li>Role-based agent templates and deployment patterns</li>
+				<li>Enterprise isolation, identity, and data boundaries</li>
+				<li>Operational telemetry and audit exports</li>
+				<li>Integration touchpoints for your stack</li>
+			</ul>
+			<app-primary-button label="Or contact sales" href="/contact" variant="outline" />
+		</aside>
+	</div>
+</div>

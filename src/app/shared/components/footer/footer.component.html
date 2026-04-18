@@ -1,0 +1,29 @@
+<footer class="border-t border-slate-200/80 bg-gradient-to-b from-transparent to-slate-100/50 pb-8 pt-14 dark:border-white/10 dark:to-black/30">
+	<div class="page-container grid max-w-[1200px] gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
+		<div>
+			<img
+				[src]="logoSrc"
+				width="280"
+				height="72"
+				[alt]="brand"
+				class="mb-4 h-11 w-auto max-w-[min(100%,280px)] object-contain object-left sm:h-12"
+				decoding="async"
+				loading="lazy"
+			/>
+			<p class="m-0 max-w-md text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+				Enterprise AI workforce orchestration and agent marketplace — deploy role-based digital employees with
+				governance built in.
+			</p>
+		</div>
+		<nav class="flex flex-col gap-2" aria-label="Footer">
+			@for (link of nav; track link.path) {
+				<a class="link-footer" [routerLink]="link.path">
+					{{ link.label }}
+				</a>
+			}
+		</nav>
+	</div>
+	<p class="page-container mt-10 max-w-[1200px] border-t border-slate-200/80 pt-6 text-center text-xs text-slate-500 dark:border-white/10 dark:text-slate-500">
+		&#169; {{ year }} {{ brand }}. All rights reserved.
+	</p>
+</footer>

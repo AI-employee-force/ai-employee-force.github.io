@@ -1,0 +1,72 @@
+<div appReveal class="page-container max-w-[640px] pb-16 pt-8 md:pt-12">
+	<app-section-heading
+		eyebrow="Contact"
+		title="Talk with our team"
+		subtitle="Share your environment, compliance needs, and the functions you want to augment. We'll follow up with a structured next step."
+	/>
+
+	@if (submitted()) {
+		<div
+			class="mb-6 rounded-[22px] border border-cyan-400/35 bg-cyan-500/10 px-6 py-5 dark:bg-cyan-500/5"
+			role="status"
+			aria-live="polite"
+		>
+			<strong class="mb-2 block text-slate-900 dark:text-slate-100">Thanks — we've received your inquiry.</strong>
+			<p class="m-0 text-sm text-slate-600 dark:text-slate-400">Our team will review your note and follow up with next steps.</p>
+		</div>
+	}
+
+	<form
+		class="flex flex-col gap-5 rounded-[22px] border border-slate-200/80 bg-white/70 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50 md:p-8"
+		(submit)="$event.preventDefault(); submit()"
+		[hidden]="submitted()"
+		aria-label="Contact inquiry"
+	>
+		<div class="grid gap-4 md:grid-cols-2">
+			<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400" for="contact-full-name">
+				Full name
+				<input
+					id="contact-full-name"
+					class="form-input"
+					name="fullName"
+					[(ngModel)]="fullName"
+					required
+					autocomplete="name"
+				/>
+			</label>
+			<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400" for="contact-work-email">
+				Work email
+				<input
+					id="contact-work-email"
+					class="form-input"
+					name="workEmail"
+					type="email"
+					[(ngModel)]="workEmail"
+					required
+					autocomplete="email"
+				/>
+			</label>
+		</div>
+		<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400" for="contact-company">
+			Company
+			<input id="contact-company" class="form-input" name="company" [(ngModel)]="company" autocomplete="organization" />
+		</label>
+		<label class="flex flex-col gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400" for="contact-message">
+			How can we help?
+			<textarea
+				id="contact-message"
+				class="form-input min-h-[120px] resize-y"
+				name="message"
+				rows="5"
+				[(ngModel)]="message"
+				placeholder="Teams, use cases, regions, compliance context..."
+			></textarea>
+		</label>
+		<app-primary-button
+			class="mt-2 self-start"
+			label="Submit inquiry"
+			[nativeButtonType]="'submit'"
+			variant="primary"
+		/>
+	</form>
+</div>

@@ -1,0 +1,72 @@
+<ng-template #inner>
+	@switch (variant()) {
+		@case ('primary') {
+			<span
+				class="pointer-events-none absolute inset-[-40%] animate-ai-orbit rounded-full bg-[conic-gradient(from_0deg_at_50%_50%,#22d3ee,#8b5cf6,#e879f9,#22d3ee)] opacity-90 motion-reduce:animate-none"
+				aria-hidden="true"
+			></span>
+			<span
+				class="pointer-events-none absolute inset-[2px] rounded-full bg-gradient-to-b from-white/25 to-transparent opacity-60"
+				aria-hidden="true"
+			></span>
+			<span
+				class="pointer-events-none absolute inset-[2px] rounded-full bg-gradient-to-br from-cyan-500 via-violet-600 to-fuchsia-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)]"
+				aria-hidden="true"
+			></span>
+			<span
+				class="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/35 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:translate-x-full group-hover:opacity-100 motion-reduce:hidden"
+				aria-hidden="true"
+			></span>
+			<span class="relative z-[1] flex items-center gap-2 px-0.5 text-[0.93rem] font-semibold tracking-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.4)]">
+				<svg class="h-4 w-4 shrink-0 opacity-95" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+				</svg>
+				{{ label() }}
+			</span>
+		}
+		@case ('ghost') {
+			<span
+				class="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/20 via-violet-500/15 to-fuchsia-500/15 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+				aria-hidden="true"
+			></span>
+			<span
+				class="relative z-[1] text-[0.93rem] font-semibold text-slate-800 transition-colors duration-300 group-hover:text-slate-900 dark:text-slate-100 dark:group-hover:text-white"
+			>
+				{{ label() }}
+			</span>
+		}
+		@default {
+			<span class="relative z-[1] text-[0.93rem] font-semibold text-slate-700 transition-colors duration-300 group-hover:text-slate-900 dark:text-slate-200 dark:group-hover:text-white">
+				{{ label() }}
+			</span>
+		}
+	}
+</ng-template>
+
+@if (href(); as link) {
+	@if (isExternal()) {
+		<a
+			class="btn-ai"
+			[class]="hostClass()"
+			[href]="link"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<ng-container *ngTemplateOutlet="inner" />
+		</a>
+	} @else {
+		<a class="btn-ai" [class]="hostClass()" [routerLink]="link">
+			<ng-container *ngTemplateOutlet="inner" />
+		</a>
+	}
+} @else {
+	<button
+		[type]="nativeButtonType()"
+		[disabled]="disabled()"
+		[attr.aria-label]="ariaLabel() ?? null"
+		class="btn-ai disabled:pointer-events-none disabled:opacity-55"
+		[class]="hostClass()"
+	>
+		<ng-container *ngTemplateOutlet="inner" />
+	</button>
+}

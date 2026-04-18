@@ -1,0 +1,26 @@
+<section
+	class="relative overflow-hidden rounded-[22px] border border-slate-200/80 bg-white/70 p-8 shadow-sm backdrop-blur-md transition-shadow duration-300 motion-safe:hover:shadow-[0_12px_48px_-20px_rgba(34,211,238,0.2)] dark:border-white/10 dark:bg-slate-900/50 md:p-12 dark:motion-safe:hover:shadow-[0_12px_48px_-16px_rgba(124,58,237,0.25)]"
+	aria-labelledby="cta-title"
+>
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_10%_0%,rgba(34,211,238,0.14),transparent),radial-gradient(ellipse_60%_60%_at_90%_100%,rgba(139,92,246,0.12),transparent)]"
+		aria-hidden="true"
+	></div>
+	<div class="relative z-[1] max-w-xl">
+		@if (config().eyebrow; as eyebrow) {
+			<p class="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-cyan-500 dark:text-cyan-400">{{ eyebrow }}</p>
+		}
+		<h2 id="cta-title" class="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-2xl">
+			{{ config().title }}
+		</h2>
+		<p class="mb-6 text-[1.05rem] leading-relaxed text-slate-600 dark:text-slate-400">{{ config().subtitle }}</p>
+		<div class="flex flex-wrap items-center gap-3">
+			<app-primary-button [label]="config().primaryLabel" [href]="config().primaryPath" variant="primary" />
+			@if (config().secondaryLabel; as sl) {
+				@if (config().secondaryPath; as sp) {
+					<app-primary-button [label]="sl" [href]="sp" variant="ghost" />
+				}
+			}
+		</div>
+	</div>
+</section>

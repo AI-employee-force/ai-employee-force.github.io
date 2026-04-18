@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+
+/* Angular’s builder only reads postcss.config.json — ensure Tailwind scans templates */
+@source "./app/**/*.{html,ts}";
+@source "./index.html";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--font-sans:
+		'DM Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+@layer base {
+	/* Ensure the app shell can scroll the window; avoid clipping that breaks `position: fixed` / layout. */
+	app-root {
+		display: block;
+		min-height: 100%;
+	}
+
+	html {
+		@apply scroll-smooth antialiased;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+
+	body {
+		@apply m-0 min-h-screen bg-violet-50 font-sans text-base leading-relaxed text-slate-900;
+		@apply dark:bg-[#0b0a14] dark:text-slate-100;
+		background-image:
+			radial-gradient(ellipse 90% 55% at 50% -28%, rgba(34, 211, 238, 0.12), transparent 58%),
+			radial-gradient(ellipse 55% 45% at 100% 0%, rgba(139, 92, 246, 0.09), transparent 50%),
+			radial-gradient(ellipse 40% 30% at 0% 20%, rgba(217, 70, 239, 0.045), transparent 45%);
+	}
+
+	html.dark body {
+		background-image:
+			radial-gradient(ellipse 90% 55% at 50% -28%, rgba(34, 211, 238, 0.09), transparent 58%),
+			radial-gradient(ellipse 55% 45% at 100% 0%, rgba(139, 92, 246, 0.1), transparent 50%),
+			radial-gradient(ellipse 45% 35% at 0% 30%, rgba(217, 70, 239, 0.06), transparent 48%);
+	}
+
+	a {
+		@apply text-inherit;
+	}
+}
+
+@layer components {
+	.page-container {
+		@apply mx-auto w-full max-w-[1200px] px-5;
+	}
+
+	/** Shared section eyebrow — use with `app-section-heading` or standalone. */
+	.eyebrow {
+		@apply text-[0.7rem] font-bold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-400;
+	}
+
+	.link-breadcrumb {
+		@apply text-slate-600 underline-offset-[3px] transition-colors hover:text-cyan-600 hover:underline focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/75 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50 dark:text-slate-300 dark:hover:text-cyan-400 dark:focus-visible:ring-offset-[#0b0a14];
+	}
+
+	.link-footer {
+		@apply rounded text-sm text-slate-600 no-underline outline-none transition-colors hover:text-cyan-600 focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-slate-400 dark:hover:text-cyan-400 dark:focus-visible:ring-offset-[#0b0a14];
+	}
+
+	.card-marketplace {
+		@apply rounded-[22px] border border-slate-200/80 bg-white/70 shadow-[0_10px_40px_-22px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-slate-900/45 dark:shadow-[0_14px_48px_-24px_rgba(0,0,0,0.45)];
+	}
+
+	.skip-link {
+		@apply sr-only z-[200] rounded-lg bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-lg outline-none ring-2 ring-cyan-400/90 dark:bg-[#12101c] dark:text-slate-100;
+	}
+
+	.skip-link:focus {
+		@apply not-sr-only fixed left-4 top-4;
+	}
+
+	.form-input {
+		@apply rounded-lg border border-slate-300 bg-white px-3.5 py-3 text-base text-slate-900 outline-none transition;
+		@apply focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400/45 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50;
+		@apply dark:border-white/12 dark:bg-[#12101c]/90 dark:text-slate-100 dark:focus-visible:ring-offset-[#0b0a14];
+	}
+
+	.form-input-search {
+		@apply w-full rounded-2xl border border-slate-300 bg-white/95 px-4 py-3.5 text-base text-slate-900 outline-none transition;
+		@apply focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-violet-400/35 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50;
+		@apply dark:border-white/12 dark:bg-[#12101c]/90 dark:text-slate-100 dark:focus-visible:ring-offset-[#0b0a14];
+	}
+
+	.reveal {
+		opacity: 0;
+		transform: translate3d(0, 1.35rem, 0);
+		transition:
+			opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+			transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.reveal.reveal-visible {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	.animate-ai-orbit {
+		animation: ai-orbit 9s linear infinite;
+	}
+
+	.animate-float-slow {
+		animation: float-slow 5.5s ease-in-out infinite;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.animate-ai-orbit,
+		.animate-float-slow {
+			animation: none;
+		}
+	}
+}
+
+@keyframes ai-orbit {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes float-slow {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}

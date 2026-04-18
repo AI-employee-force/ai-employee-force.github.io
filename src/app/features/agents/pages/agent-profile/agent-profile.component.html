@@ -1,0 +1,292 @@
+@if (agent(); as a) {
+	<article class="profile-page">
+		<!-- Breadcrumb -->
+		<div
+			class="border-b border-slate-200/80 bg-white/40 backdrop-blur-md dark:border-white/10 dark:bg-slate-950/40"
+		>
+			<nav
+				class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-2 gap-y-1 px-5 py-3 text-[0.8rem] font-medium text-slate-500 dark:text-slate-400"
+				aria-label="Breadcrumb"
+			>
+				<a routerLink="/" class="link-breadcrumb">Home</a>
+				<span class="text-slate-300 dark:text-slate-600" aria-hidden="true">/</span>
+				<a routerLink="/agents" class="link-breadcrumb">Marketplace</a>
+				<span class="text-slate-300 dark:text-slate-600" aria-hidden="true">/</span>
+				<span class="font-semibold text-slate-800 dark:text-slate-200">{{ a.name }}</span>
+			</nav>
+		</div>
+
+		<!-- Hero -->
+		<section
+			class="relative overflow-hidden border-b border-slate-200/70 dark:border-white/10"
+			aria-labelledby="profile-hero-title"
+		>
+			<div
+				class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(34,211,238,0.22),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_50%,rgba(124,58,237,0.14),transparent_50%),radial-gradient(ellipse_70%_50%_at_0%_80%,rgba(217,70,239,0.1),transparent_45%)] dark:bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(34,211,238,0.12),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_50%,rgba(124,58,237,0.1),transparent_50%)]"
+			></div>
+			<div class="relative mx-auto max-w-6xl px-5 py-12 md:py-16 lg:py-20">
+				<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:items-start">
+					<div>
+						<div class="mb-5 flex flex-wrap items-center gap-2">
+							<span
+								class="inline-flex items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-cyan-700 dark:text-cyan-300"
+							>
+								{{ a.categoryLabel }}
+							</span>
+							<span
+								class="inline-flex items-center rounded-full border border-slate-300/80 bg-white/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-slate-500 dark:border-white/15 dark:bg-white/5 dark:text-slate-400"
+							>
+								{{ a.category }}
+							</span>
+						</div>
+						<h1
+							id="profile-hero-title"
+							class="mb-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]"
+						>
+							{{ a.name }}
+						</h1>
+						<p class="mb-4 text-lg font-semibold text-slate-600 dark:text-slate-300 md:text-xl">{{ a.roleTitle }}</p>
+						<p class="mb-3 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+							{{ a.shortDescription }}
+						</p>
+						<p class="mb-8 max-w-2xl text-base font-medium leading-relaxed text-cyan-700 dark:text-cyan-300/95">
+							{{ a.heroTagline }}
+						</p>
+						<div class="flex flex-wrap gap-3">
+							<app-primary-button label="Deploy this agent" href="/demo" variant="primary" />
+							<app-primary-button label="Book a demo" href="/demo" variant="outline" />
+							<app-primary-button label="Browse marketplace" href="/agents" variant="ghost" />
+						</div>
+					</div>
+					<aside
+						appReveal
+						class="rounded-[28px] border border-slate-200/90 bg-white/75 p-6 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.35)] backdrop-blur-xl dark:border-white/12 dark:bg-slate-900/65 dark:shadow-[0_28px_90px_-36px_rgba(0,0,0,0.55)]"
+						aria-labelledby="at-a-glance"
+					>
+						<h2 id="at-a-glance" class="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+							At a glance
+						</h2>
+						<dl class="m-0 space-y-4 border-b border-slate-200/80 pb-5 dark:border-white/10">
+							<div>
+								<dt class="mb-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Category</dt>
+								<dd class="m-0 text-sm font-semibold text-slate-800 dark:text-slate-100">{{ a.categoryLabel }}</dd>
+							</div>
+							<div>
+								<dt class="mb-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Function</dt>
+								<dd class="m-0 text-sm font-semibold text-slate-800 dark:text-slate-100">{{ a.roleTitle }}</dd>
+							</div>
+						</dl>
+						<p class="mb-2 mt-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Keywords</p>
+						<div class="flex flex-wrap gap-2">
+							@for (k of keywordChips(); track k) {
+								<span
+									class="rounded-lg border border-slate-200/90 bg-slate-50/90 px-2.5 py-1 text-[0.7rem] font-medium text-slate-600 dark:border-white/12 dark:bg-white/[0.06] dark:text-slate-300"
+								>
+									{{ k }}
+								</span>
+							}
+						</div>
+					</aside>
+				</div>
+			</div>
+		</section>
+
+		<div class="mx-auto max-w-6xl space-y-20 px-5 py-16 md:py-20">
+			<!-- Overview -->
+			<section appReveal aria-labelledby="overview-heading">
+				<app-section-heading
+					eyebrow="Overview"
+					title="What this agent delivers"
+					[density]="'compact'"
+					titleId="overview-heading"
+				/>
+				<p class="m-0 max-w-3xl text-lg leading-[1.75] text-slate-600 dark:text-slate-400">{{ a.longDescription }}</p>
+			</section>
+
+			<!-- Capabilities -->
+			<section appReveal aria-labelledby="capabilities-heading">
+				<app-section-heading
+					eyebrow="Capabilities"
+					[title]="'What ' + a.name + ' can do'"
+					subtitle="Structured responsibilities you can plug into workflows, reviews, and handoffs — with clear scope and outputs."
+					[density]="'compact'"
+					titleId="capabilities-heading"
+				/>
+				<ul class="m-0 grid list-none gap-5 p-0 sm:grid-cols-2">
+					@for (c of a.capabilities; track c.title) {
+						<li class="card-marketplace flex flex-col p-6">
+							<h3 class="mb-2 text-lg font-bold text-slate-900 dark:text-slate-100">{{ c.title }}</h3>
+							<p class="m-0 flex-1 text-[0.95rem] leading-relaxed text-slate-600 dark:text-slate-400">{{ c.description }}</p>
+						</li>
+					}
+				</ul>
+			</section>
+
+			<!-- Tools / Domains / Strengths -->
+			<section appReveal aria-labelledby="stack-heading">
+				<app-section-heading
+					eyebrow="Skill stack"
+					title="Tools, domains &amp; strengths"
+					subtitle="How this profile maps to your toolchain, operating context, and repeatable outcomes."
+					[density]="'compact'"
+					titleId="stack-heading"
+				/>
+				<div class="grid gap-6 md:grid-cols-3">
+					<div
+						class="rounded-[22px] border border-slate-200/80 bg-gradient-to-b from-white/90 to-slate-50/50 p-6 dark:border-white/10 dark:from-slate-900/60 dark:to-slate-950/40"
+					>
+						<h3 class="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Tools</h3>
+						<ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+							@for (t of a.tools; track t) {
+								<li
+									class="rounded-full border border-violet-300/40 bg-violet-500/10 px-3.5 py-1.5 text-xs font-semibold text-violet-900 dark:border-violet-400/25 dark:bg-violet-500/15 dark:text-violet-200"
+								>
+									{{ t }}
+								</li>
+							}
+						</ul>
+					</div>
+					<div
+						class="rounded-[22px] border border-slate-200/80 bg-gradient-to-b from-white/90 to-slate-50/50 p-6 dark:border-white/10 dark:from-slate-900/60 dark:to-slate-950/40"
+					>
+						<h3 class="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Domains</h3>
+						<ul class="m-0 space-y-2.5 p-0">
+							@for (d of a.skillDomains; track d) {
+								<li class="flex items-start gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+									<span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" aria-hidden="true"></span>
+									{{ d }}
+								</li>
+							}
+						</ul>
+					</div>
+					<div
+						class="rounded-[22px] border border-slate-200/80 bg-gradient-to-b from-white/90 to-slate-50/50 p-6 dark:border-white/10 dark:from-slate-900/60 dark:to-slate-950/40"
+					>
+						<h3 class="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Core strengths</h3>
+						<ul class="m-0 space-y-2.5 p-0">
+							@for (s of strengthLabels(); track s) {
+								<li class="flex items-start gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+									<span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-fuchsia-500" aria-hidden="true"></span>
+									{{ s }}
+								</li>
+							}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Use cases -->
+			<section appReveal aria-labelledby="use-cases-heading">
+				<app-section-heading
+					eyebrow="Use cases"
+					title="Where teams deploy this profile"
+					subtitle="Real-world scenarios that match how enterprises adopt AI employees."
+					[density]="'compact'"
+					titleId="use-cases-heading"
+				/>
+				<ol class="m-0 grid list-none gap-4 p-0 md:grid-cols-2">
+					@for (u of a.useCases; track u; let i = $index) {
+						<li
+							class="relative overflow-hidden rounded-[22px] border border-slate-200/80 bg-white/65 p-6 pl-14 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/40"
+						>
+							<span
+								class="absolute left-5 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-violet-600 text-xs font-bold text-white shadow-md"
+								aria-hidden="true"
+							>
+								{{ i + 1 }}
+							</span>
+							<p class="m-0 text-[0.95rem] leading-relaxed text-slate-700 dark:text-slate-300">{{ u }}</p>
+						</li>
+					}
+				</ol>
+			</section>
+
+			<!-- Why this agent matters -->
+			<section
+				appReveal
+				class="rounded-[28px] border border-slate-200/80 bg-gradient-to-br from-slate-50/90 via-white/80 to-cyan-50/40 p-8 md:p-10 dark:border-white/10 dark:from-slate-900/80 dark:via-slate-950/60 dark:to-violet-950/30"
+				aria-labelledby="why-heading"
+			>
+				<app-section-heading
+					eyebrow="Business value"
+					title="Why this agent matters"
+					[density]="'compact'"
+					titleId="why-heading"
+				/>
+				<p class="m-0 max-w-3xl text-lg leading-[1.75] text-slate-700 dark:text-slate-300">{{ a.whyMatters }}</p>
+			</section>
+
+			<!-- Related agents -->
+			@if (relatedAgents().length) {
+				<section appReveal aria-labelledby="related-heading">
+					<div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+						<app-section-heading
+							class="min-w-0 flex-1"
+							eyebrow="Related"
+							title="Explore similar agents"
+							subtitle="Same or adjacent categories — compose a team that fits your org."
+							[density]="'compact'"
+							titleId="related-heading"
+						/>
+						<a routerLink="/agents" class="link-breadcrumb shrink-0 text-sm font-semibold no-underline hover:underline">
+							View full marketplace →
+						</a>
+					</div>
+					<div class="grid gap-6 md:grid-cols-3">
+						@for (rel of relatedAgents(); track rel.slug) {
+							<app-agent-card [agent]="rel" />
+						}
+					</div>
+				</section>
+			}
+
+			<!-- Final CTA -->
+			<section
+				appReveal
+				class="relative overflow-hidden rounded-[28px] border border-white/20 bg-gradient-to-br from-cyan-600 via-violet-600 to-fuchsia-600 px-6 py-12 text-center shadow-[0_24px_64px_-20px_rgba(124,58,237,0.42)] md:px-12 md:py-14"
+				aria-labelledby="final-cta-heading"
+			>
+				<div
+					class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.18),transparent_55%)]"
+				></div>
+				<div class="relative">
+					<h2 id="final-cta-heading" class="mb-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+						Ready to deploy {{ a.name }}?
+					</h2>
+					<p class="mx-auto mb-8 max-w-xl text-base leading-relaxed text-white/90">
+						Connect this role to your orchestration layer, environments, and governance workflows. We’ll help you scope policies,
+						handoffs, and success metrics.
+					</p>
+					<div class="flex flex-wrap justify-center gap-3">
+						<app-primary-button label="Request deployment" href="/demo" variant="primary" />
+						<app-primary-button label="Talk to sales" href="/demo" variant="ghost" />
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+} @else {
+	<div
+		class="relative min-h-[70vh] overflow-hidden border-b border-slate-200/80 bg-slate-50/80 dark:border-white/10 dark:bg-slate-950/80"
+		appReveal
+		role="alert"
+	>
+		<div
+			class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_-10%,rgba(34,211,238,0.12),transparent_50%)]"
+		></div>
+		<div class="relative mx-auto flex max-w-lg flex-col items-center px-5 py-20 text-center md:py-28">
+			<p class="mb-3 inline-flex rounded-full border border-slate-300/80 bg-white/70 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-slate-500 dark:border-white/15 dark:bg-white/5 dark:text-slate-400">
+				404
+			</p>
+			<h1 class="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-4xl">This agent profile doesn’t exist</h1>
+			<p class="mb-2 text-lg text-slate-600 dark:text-slate-400">
+				The link may be outdated, or this AI employee isn’t listed in the marketplace yet.
+			</p>
+			<p class="mb-10 text-sm text-slate-500 dark:text-slate-500">Try another profile from the catalog, or return home.</p>
+			<div class="flex flex-wrap justify-center gap-3">
+				<app-primary-button label="Browse marketplace" href="/agents" variant="primary" />
+				<app-primary-button label="Back to home" href="/" variant="ghost" />
+			</div>
+		</div>
+	</div>
+}

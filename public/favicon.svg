@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="AI Employee Force">
+	<title>AI Employee Force</title>
+	<defs>
+		<linearGradient id="aef-g" x1="6" y1="4" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#22d3ee" />
+			<stop offset="0.55" stop-color="#8b5cf6" />
+			<stop offset="1" stop-color="#7c3aed" />
+		</linearGradient>
+	</defs>
+	<rect width="32" height="32" rx="9" fill="url(#aef-g)" />
+	<!-- Bolt mark, centered for 16-32px legibility -->
+	<path
+		fill="#f8fafc"
+		d="M17.2 5.5L9.5 17.2h4.6l-1.8 9.3 9.8-14.1h-5.1l2.2-6.9z"
+		opacity="0.96"
+	/>
+</svg>

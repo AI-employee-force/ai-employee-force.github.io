@@ -1,0 +1,50 @@
+<article
+	class="group h-full rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm backdrop-blur-md transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-violet-400/40 motion-safe:hover:shadow-[0_14px_44px_-18px_rgba(139,92,246,0.2)] dark:border-white/10 dark:bg-slate-900/55 dark:motion-safe:hover:shadow-[0_16px_48px_-16px_rgba(34,211,238,0.12)]"
+>
+	<div
+		class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-400/20 bg-gradient-to-br from-cyan-400/15 to-violet-500/10 text-cyan-500 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/40 dark:text-cyan-400"
+		aria-hidden="true"
+	>
+		@switch (feature().icon) {
+			@case ('orchestrate') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M4 6h16M4 12h10M4 18h16" stroke-linecap="round" />
+					<circle cx="18" cy="12" r="3" />
+				</svg>
+			}
+			@case ('marketplace') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M3 10h18M3 6h18v12a2 2 0 002 2h-5M3 6a2 2 0 012-2h14a2 2 0 012 2" />
+					<path d="M9 14h2M9 18h2" stroke-linecap="round" />
+				</svg>
+			}
+			@case ('governance') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" />
+					<path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			}
+			@case ('roles') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<circle cx="9" cy="8" r="3" />
+					<path d="M3 20v-1a4 4 0 014-4h4a4 4 0 014 4v1" />
+					<path d="M17 11h4M17 15h4M17 19h4" stroke-linecap="round" />
+				</svg>
+			}
+			@case ('audit') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M4 5h16v14H4z" />
+					<path d="M8 10h8M8 14h5" stroke-linecap="round" />
+					<circle cx="17" cy="7" r="2" fill="currentColor" stroke="none" />
+				</svg>
+			}
+			@case ('scale') {
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			}
+		}
+	</div>
+	<h3 class="mb-2 text-[1.05rem] font-bold tracking-tight text-slate-900 dark:text-slate-100">{{ feature().title }}</h3>
+	<p class="m-0 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ feature().description }}</p>
+</article>

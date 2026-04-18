@@ -1,0 +1,141 @@
+<div appReveal class="page-container pb-16 pt-8 md:pt-12">
+	<app-section-heading
+		eyebrow="Marketplace"
+		title="Find the right AI employee"
+		subtitle="Filter by department and search by role or capability. Every profile includes responsibilities, tools, and real-world use cases."
+	/>
+
+	<div class="mt-8 flex flex-col gap-8 lg:mt-10 lg:flex-row lg:items-start lg:gap-10">
+		<!-- Filters (e-commerce style sidebar) -->
+		<aside
+			class="w-full shrink-0 lg:sticky lg:top-24 lg:w-[min(100%,280px)] lg:max-w-[300px]"
+			aria-labelledby="filters-heading"
+		>
+			<div
+				class="card-marketplace border-slate-200/90 bg-white/80 p-5 dark:border-white/10 dark:bg-[#12101c]/70"
+			>
+				<h2
+					id="filters-heading"
+					class="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400"
+				>
+					Filters
+				</h2>
+
+				<div class="mb-5">
+					<label class="mb-2 block text-xs font-semibold text-slate-700 dark:text-slate-300" for="agent-search">
+						Search
+					</label>
+					<input
+						id="agent-search"
+						type="search"
+						class="form-input-search w-full border-slate-300 bg-white py-2.5 text-sm dark:border-white/12 dark:bg-[#0b0a14]/80"
+						placeholder="Name, role, keyword…"
+						[value]="search()"
+						(input)="onSearchInput($event)"
+						autocomplete="off"
+					/>
+				</div>
+
+				<p class="mb-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300">Department</p>
+				<div
+					id="agent-department-tabs"
+					class="flex max-h-[min(52vh,420px)] flex-col gap-1 overflow-y-auto pr-0.5 [scrollbar-width:thin]"
+					role="tablist"
+					aria-label="Filter by department"
+					aria-orientation="vertical"
+				>
+					@for (c of categoryTabs(); track c.id) {
+						<button
+							type="button"
+							class="group flex w-full items-center justify-between gap-3 rounded-xl border px-3 py-2.5 text-left text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0b0a14]"
+							[class.border-cyan-400/50]="category() === c.id"
+							[class.bg-gradient-to-r]="category() === c.id"
+							[class.from-cyan-500/12]="category() === c.id"
+							[class.to-violet-500/8]="category() === c.id"
+							[class.text-slate-900]="category() === c.id"
+							[class.shadow-sm]="category() === c.id"
+							[class.dark:border-cyan-400/35]="category() === c.id"
+							[class.dark:from-cyan-500/15]="category() === c.id"
+							[class.dark:to-violet-500/10]="category() === c.id"
+							[class.dark:text-white]="category() === c.id"
+							[class.border-transparent]="category() !== c.id"
+							[class.bg-transparent]="category() !== c.id"
+							[class.text-slate-600]="category() !== c.id"
+							[class.hover:border-slate-300/80]="category() !== c.id"
+							[class.hover:bg-slate-100/80]="category() !== c.id"
+							[class.dark:text-slate-400]="category() !== c.id"
+							[class.dark:hover:border-white/12]="category() !== c.id"
+							[class.dark:hover:bg-white/[0.06]]="category() !== c.id"
+							(click)="selectCategory(c.id)"
+							role="tab"
+							[id]="'tab-dept-' + c.id"
+							[attr.aria-controls]="'agent-directory-results'"
+							[attr.aria-selected]="category() === c.id"
+							[attr.aria-label]="
+								c.id === 'all' ? 'All departments, ' + c.count + ' agents' : c.label + ' department, ' + c.count + ' agents'
+							"
+						>
+							<span class="min-w-0 flex-1 truncate">{{ c.label }}</span>
+							<span
+								class="shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums"
+								[class.bg-cyan-500/25]="category() === c.id"
+								[class.text-cyan-900]="category() === c.id"
+								[class.dark:bg-cyan-400/20]="category() === c.id"
+								[class.dark:text-cyan-100]="category() === c.id"
+								[class.bg-slate-200/90]="category() !== c.id"
+								[class.text-slate-600]="category() !== c.id"
+								[class.group-hover:bg-slate-300/80]="category() !== c.id"
+								[class.dark:bg-white/10]="category() !== c.id"
+								[class.dark:text-slate-300]="category() !== c.id"
+								[class.dark:group-hover:bg-white/15]="category() !== c.id"
+								aria-hidden="true"
+							>
+								{{ c.count }}
+							</span>
+						</button>
+					}
+				</div>
+			</div>
+		</aside>
+
+		<!-- Results -->
+		<div
+			id="agent-directory-results"
+			class="min-w-0 flex-1"
+			role="tabpanel"
+			[attr.aria-labelledby]="'tab-dept-' + category()"
+		>
+			<div
+				class="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-200/80 pb-4 dark:border-white/10"
+			>
+				<p class="text-sm text-slate-600 dark:text-slate-400" aria-live="polite">
+					<span class="font-semibold text-slate-900 dark:text-slate-100">{{ filtered().length }}</span>
+					@if (filtered().length === 1) {
+						<span> agent</span>
+					} @else {
+						<span> agents</span>
+					}
+				</p>
+				@if (search().trim()) {
+					<p class="text-xs text-slate-500 dark:text-slate-500">Matching “{{ search().trim() }}”</p>
+				}
+			</div>
+
+			@if (filtered().length === 0) {
+				<div
+					class="rounded-[22px] border border-dashed border-slate-300/80 bg-white/50 px-6 py-16 text-center dark:border-white/15 dark:bg-white/[0.03]"
+				>
+					<p class="m-0 text-slate-600 dark:text-slate-400">
+						No agents match your filters. Try another department or a different search.
+					</p>
+				</div>
+			} @else {
+				<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+					@for (agent of filtered(); track agent.slug) {
+						<app-agent-card [agent]="agent" />
+					}
+				</div>
+			}
+		</div>
+	</div>
+</div>
