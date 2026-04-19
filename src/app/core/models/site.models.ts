@@ -65,6 +65,12 @@ export interface NavigationLink {
 	external?: boolean;
 }
 
+/** Grouped footer links (e.g. Product / Company / Get started). */
+export interface FooterNavSection {
+	title: string;
+	links: readonly NavigationLink[];
+}
+
 export interface CtaConfig {
 	eyebrow?: string;
 	title: string;

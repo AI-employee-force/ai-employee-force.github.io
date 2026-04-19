@@ -70,7 +70,7 @@
 		title="Hire specialized AI employees by role"
 		subtitle="Browse agents with clear responsibilities, tools, and escalation paths — like hiring, but instant and governed."
 	/>
-	<div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
 		@for (agent of previewAgents(); track agent.slug) {
 			<app-agent-card [agent]="agent" />
 		}

@@ -1,0 +1,77 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TechProducto animated robot">
+<defs>
+  <linearGradient id="accent_techproducto" x1="68" y1="40" x2="196" y2="206" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#fb7185"/>
+    <stop offset="100%" stop-color="#a78bfa"/>
+  </linearGradient>
+  <radialGradient id="bg_techproducto" cx="50%" cy="30%" r="70%">
+    <stop offset="0%" stop-color="#13213B"/>
+    <stop offset="100%" stop-color="#09111F"/>
+  </radialGradient>
+  <filter id="shadow_techproducto" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.22"/>
+  </filter>
+  <style>
+    .bot {
+      animation: float 4.30s ease-in-out infinite;
+      transform-origin: 128px 128px;
+    }
+    .prop {
+      animation: propFloat 3.10s ease-in-out infinite;
+      transform-origin: 184px 120px;
+    }
+    .blink {
+      animation: blink 3.00s infinite;
+      transform-origin: 128px 108px;
+    }
+    .glowPulse {
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes propFloat {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-3px) rotate(1.3deg); }
+    }
+    @keyframes blink {
+      0%, 45%, 100% { transform: scaleY(1); }
+      47%, 49% { transform: scaleY(0.15); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity: .9; }
+      50% { opacity: .45; }
+    }
+  </style>
+</defs>
+
+<circle cx="54" cy="54" r="22" fill="url(#accent_techproducto)" opacity="0.14" class="glowPulse"/>
+<circle cx="206" cy="192" r="28" fill="url(#accent_techproducto)" opacity="0.10" class="glowPulse"/>
+<ellipse cx="128" cy="214" rx="58" ry="10" fill="#6366f1" opacity="0.14"/>
+
+<g class="bot" filter="url(#shadow_techproducto)">
+  <path d="M92 62l20-22 10 30z" fill="#F8FBFF" stroke="#9CCBFF" stroke-width="4"/><path d="M164 48l20 22-30 8z" fill="#F8FBFF" stroke="#9CCBFF" stroke-width="4"/>
+  <rect x="78" y="48" width="100" height="96" rx="34" fill="#F8FBFF" stroke="#9CCBFF" stroke-width="4"/>
+  <path d="M84 93c0-17 14-31 31-31h26c17 0 31 14 31 31v18c0 17-14 31-31 31h-26c-17 0-31-14-31-31V93z" fill="url(#bg_techproducto)" stroke="#1D4ED8" stroke-width="3"/>
+  <g class="blink">
+    <ellipse cx="108" cy="108" rx="10" ry="10" fill="#59E8FF"/><ellipse cx="148" cy="108" rx="10" ry="10" fill="#59E8FF"/><circle cx="105" cy="104" r="3.2" fill="#E8FFFF"/><circle cx="145" cy="104" r="3.2" fill="#E8FFFF"/>
+  </g>
+  <path d="M112 126c9 6 23 6 32 0" stroke="#63E9FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M128 48V34" stroke="url(#accent_techproducto)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="128" cy="28" r="5" fill="url(#accent_techproducto)" class="glowPulse"/>
+
+  <rect x='104' y='150' width='48' height='34' rx='16' fill='#F3F7FF' stroke='#A7C7FF' stroke-width='4'/>
+  <rect x="108" y="184" width="16" height="26" rx="8" fill="#F8FBFF" stroke="#A8C8FF" stroke-width="4"/>
+  <rect x="132" y="184" width="16" height="26" rx="8" fill="#F8FBFF" stroke="#A8C8FF" stroke-width="4"/>
+  <rect x="86" y="154" width="18" height="44" rx="9" fill="#F8FBFF" stroke="#A8C8FF" stroke-width="4"/>
+  <rect x="152" y="154" width="18" height="44" rx="9" fill="#F8FBFF" stroke="#A8C8FF" stroke-width="4"/>
+</g>
+
+<g class="prop">
+  <rect x="165" y="100" width="38" height="38" rx="8" stroke="url(#accent_techproducto)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M173 111h22M173 120h16M173 129h10" stroke="url(#accent_techproducto)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M200 97l8 8" stroke="url(#accent_techproducto)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</g>
+
+<rect x="20" y="20" width="82" height="24" rx="12" fill="#0F172A" opacity="0.92"/>
+<text x="61" y="36" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#E2E8F0">TechProducto</text>
+</svg>

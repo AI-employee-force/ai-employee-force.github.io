@@ -1,5 +1,35 @@
-<footer class="border-t border-slate-200/80 bg-gradient-to-b from-transparent to-slate-100/50 pb-8 pt-14 dark:border-white/10 dark:to-black/30">
-	<div class="page-container grid max-w-[1200px] gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
+<footer
+	class="border-t border-slate-200/80 bg-gradient-to-b from-transparent to-slate-100/50 dark:border-white/10 dark:to-black/30"
+	aria-label="Site footer"
+>
+	<!-- Newsletter-style strip (inspired by dense marketing footers e.g. galichat.com) -->
+	<section
+		aria-labelledby="footer-news-heading"
+		class="border-b border-slate-200/70 bg-gradient-to-r from-cyan-500/[0.06] via-transparent to-violet-500/[0.07] dark:border-white/10 dark:from-cyan-400/[0.07] dark:to-violet-500/[0.08]"
+	>
+		<div class="page-container max-w-[1200px] py-10 md:py-12">
+			<div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+				<div class="max-w-xl">
+					<p class="eyebrow mb-2">Stay in the loop</p>
+					<h2
+						id="footer-news-heading"
+						class="m-0 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-2xl"
+					>
+						Be the first to see what we ship next
+					</h2>
+					<p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+						Product updates, orchestration patterns, and release notes — infrequent and no spam.
+					</p>
+				</div>
+				<div class="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+					<app-primary-button label="Get updates" href="/contact" variant="primary" />
+					<app-primary-button label="Try the demo" href="/demo" variant="outline" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="page-container grid max-w-[1200px] gap-12 py-14 md:gap-14 lg:grid-cols-[minmax(0,1.35fr)_repeat(3,minmax(0,1fr))]">
 		<div>
 			<img
 				[src]="logoSrc"
@@ -15,15 +45,46 @@
 				governance built in.
 			</p>
 		</div>
-		<nav class="flex flex-col gap-2" aria-label="Footer">
-			@for (link of nav; track link.path) {
-				<a class="link-footer" [routerLink]="link.path">
-					{{ link.label }}
-				</a>
-			}
-		</nav>
+
+		@for (section of sections; track section.title) {
+			<nav [attr.aria-label]="section.title">
+				<h3 class="m-0 mb-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-500">
+					{{ section.title }}
+				</h3>
+				<ul class="m-0 flex list-none flex-col gap-2.5 p-0">
+					@for (link of section.links; track link.label) {
+						<li>
+							@if (link.external) {
+								<a
+									class="link-footer inline-block"
+									[href]="link.path"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{{ link.label }}
+								</a>
+							} @else {
+								<a class="link-footer inline-block font-medium" [routerLink]="link.path">
+									{{ link.label }}
+								</a>
+							}
+						</li>
+					}
+				</ul>
+			</nav>
+		}
 	</div>
-	<p class="page-container mt-10 max-w-[1200px] border-t border-slate-200/80 pt-6 text-center text-xs text-slate-500 dark:border-white/10 dark:text-slate-500">
-		&#169; {{ year }} {{ brand }}. All rights reserved.
-	</p>
+
+	<div class="border-t border-slate-200/80 dark:border-white/10">
+		<div
+			class="page-container flex max-w-[1200px] flex-col gap-3 py-7 text-xs text-slate-500 dark:text-slate-500 md:flex-row md:items-center md:justify-between"
+		>
+			<p class="m-0 text-center md:text-left">
+				&#169; {{ year }} {{ brand }}. All rights reserved.
+			</p>
+			<p class="m-0 text-center md:text-right">
+				Your 24/7 orchestration layer for governed AI employees.
+			</p>
+		</div>
+	</div>
 </footer>

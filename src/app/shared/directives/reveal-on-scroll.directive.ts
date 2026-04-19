@@ -42,6 +42,8 @@ export class RevealOnScrollDirective implements AfterViewInit, OnDestroy {
 			this.observer = new IntersectionObserver(
 				(entries) => {
 					for (const entry of entries) {
+						// Use `threshold: 0` (not 0.06): a single tall host (e.g. whole marketplace page) can have
+						// intersectionRatio below 6% of its own area, so a 0.06 threshold never fired.
 						if (entry.isIntersecting) {
 							this.ngZone.run(() => {
 								entry.target.classList.add('reveal-visible');
@@ -50,7 +52,7 @@ export class RevealOnScrollDirective implements AfterViewInit, OnDestroy {
 						}
 					}
 				},
-				{ threshold: 0.06, rootMargin: '0px 0px -8% 0px' },
+				{ threshold: 0, rootMargin: '0px 0px -8% 0px' },
 			);
 			this.observer.observe(host);
 		});

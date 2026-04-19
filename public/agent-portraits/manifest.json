@@ -1,0 +1,236 @@
+[
+  {
+    "slug": "fronto",
+    "name": "Fronto",
+    "industry": "Frontend Developer",
+    "path": "agent-portraits/fronto.svg"
+  },
+  {
+    "slug": "backo",
+    "name": "Backo",
+    "industry": "Backend Developer",
+    "path": "agent-portraits/backo.svg"
+  },
+  {
+    "slug": "stacko",
+    "name": "Stacko",
+    "industry": "Full Stack Developer",
+    "path": "agent-portraits/stacko.svg"
+  },
+  {
+    "slug": "devopsy",
+    "name": "DevOpsy",
+    "industry": "DevOps Engineer",
+    "path": "agent-portraits/devopsy.svg"
+  },
+  {
+    "slug": "testo",
+    "name": "Testo",
+    "industry": "QA / Testing",
+    "path": "agent-portraits/testo.svg"
+  },
+  {
+    "slug": "automo",
+    "name": "Automo",
+    "industry": "Automation Engineer",
+    "path": "agent-portraits/automo.svg"
+  },
+  {
+    "slug": "designo",
+    "name": "Designo",
+    "industry": "UI/UX Designer",
+    "path": "agent-portraits/designo.svg"
+  },
+  {
+    "slug": "writeo",
+    "name": "Writeo",
+    "industry": "Technical Writer",
+    "path": "agent-portraits/writeo.svg"
+  },
+  {
+    "slug": "doco",
+    "name": "Doco",
+    "industry": "Documentation Specialist",
+    "path": "agent-portraits/doco.svg"
+  },
+  {
+    "slug": "dato",
+    "name": "Dato",
+    "industry": "Data Analyst",
+    "path": "agent-portraits/dato.svg"
+  },
+  {
+    "slug": "sciento",
+    "name": "Sciento",
+    "industry": "Data Scientist",
+    "path": "agent-portraits/sciento.svg"
+  },
+  {
+    "slug": "intelli",
+    "name": "Intelli",
+    "industry": "AI/ML Engineer",
+    "path": "agent-portraits/intelli.svg"
+  },
+  {
+    "slug": "dbo",
+    "name": "Dbo",
+    "industry": "Database Administrator",
+    "path": "agent-portraits/dbo.svg"
+  },
+  {
+    "slug": "cloudo",
+    "name": "Cloudo",
+    "industry": "Cloud Architect",
+    "path": "agent-portraits/cloudo.svg"
+  },
+  {
+    "slug": "securo",
+    "name": "Securo",
+    "industry": "Security Engineer",
+    "path": "agent-portraits/securo.svg"
+  },
+  {
+    "slug": "cybero",
+    "name": "Cybero",
+    "industry": "Cybersecurity Analyst",
+    "path": "agent-portraits/cybero.svg"
+  },
+  {
+    "slug": "producto",
+    "name": "Producto",
+    "industry": "Product Manager",
+    "path": "agent-portraits/producto.svg"
+  },
+  {
+    "slug": "techproducto",
+    "name": "TechProducto",
+    "industry": "Technical Product Manager",
+    "path": "agent-portraits/techproducto.svg"
+  },
+  {
+    "slug": "planno",
+    "name": "Planno",
+    "industry": "Project Manager",
+    "path": "agent-portraits/planno.svg"
+  },
+  {
+    "slug": "programo",
+    "name": "Programo",
+    "industry": "Program Manager",
+    "path": "agent-portraits/programo.svg"
+  },
+  {
+    "slug": "analytico",
+    "name": "Analytico",
+    "industry": "Business Analyst",
+    "path": "agent-portraits/analytico.svg"
+  },
+  {
+    "slug": "solvo",
+    "name": "Solvo",
+    "industry": "Solutions Architect",
+    "path": "agent-portraits/solvo.svg"
+  },
+  {
+    "slug": "cto-x",
+    "name": "CTO-X",
+    "industry": "CTO (Chief Technology Officer)",
+    "path": "agent-portraits/cto-x.svg"
+  },
+  {
+    "slug": "engino",
+    "name": "Engino",
+    "industry": "Engineering Manager",
+    "path": "agent-portraits/engino.svg"
+  },
+  {
+    "slug": "marketo",
+    "name": "Marketo",
+    "industry": "Marketing Specialist",
+    "path": "agent-portraits/marketo.svg"
+  },
+  {
+    "slug": "growo",
+    "name": "Growo",
+    "industry": "Growth Hacker",
+    "path": "agent-portraits/growo.svg"
+  },
+  {
+    "slug": "seono",
+    "name": "Seono",
+    "industry": "SEO Expert",
+    "path": "agent-portraits/seono.svg"
+  },
+  {
+    "slug": "contento",
+    "name": "Contento",
+    "industry": "Content Writer",
+    "path": "agent-portraits/contento.svg"
+  },
+  {
+    "slug": "sello",
+    "name": "Sello",
+    "industry": "Sales Representative",
+    "path": "agent-portraits/sello.svg"
+  },
+  {
+    "slug": "supporto",
+    "name": "Supporto",
+    "industry": "Customer Support",
+    "path": "agent-portraits/supporto.svg"
+  },
+  {
+    "slug": "successo",
+    "name": "Successo",
+    "industry": "Customer Success Manager",
+    "path": "agent-portraits/successo.svg"
+  },
+  {
+    "slug": "finanzo",
+    "name": "Finanzo",
+    "industry": "Finance Analyst",
+    "path": "agent-portraits/finanzo.svg"
+  },
+  {
+    "slug": "accounto",
+    "name": "Accounto",
+    "industry": "Accountant",
+    "path": "agent-portraits/accounto.svg"
+  },
+  {
+    "slug": "huro",
+    "name": "Huro",
+    "industry": "HR Manager",
+    "path": "agent-portraits/huro.svg"
+  },
+  {
+    "slug": "hireo",
+    "name": "Hireo",
+    "industry": "Recruiter",
+    "path": "agent-portraits/hireo.svg"
+  },
+  {
+    "slug": "legalo",
+    "name": "Legalo",
+    "industry": "Legal Advisor",
+    "path": "agent-portraits/legalo.svg"
+  },
+  {
+    "slug": "opero",
+    "name": "Opero",
+    "industry": "Operations Manager",
+    "path": "agent-portraits/opero.svg"
+  },
+  {
+    "slug": "supplyo",
+    "name": "Supplyo",
+    "industry": "Supply Chain Specialist",
+    "path": "agent-portraits/supplyo.svg"
+  },
+  {
+    "slug": "flowo",
+    "name": "Flowo",
+    "industry": "Workflow Specialist",
+    "path": "agent-portraits/flowo.svg"
+  }
+]
