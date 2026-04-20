@@ -134,7 +134,7 @@
   {
     "slug": "cto-x",
     "name": "CTO-X",
-    "industry": "CTO (Chief Technology Officer)",
+    "industry": "Chief Technology Officer",
     "path": "agent-portraits/cto-x.svg"
   },
   {
@@ -232,5 +232,113 @@
     "name": "Flowo",
     "industry": "Workflow Specialist",
     "path": "agent-portraits/flowo.svg"
+  },
+  {
+    "slug": "mlo",
+    "name": "MLo",
+    "industry": "ML Engineer",
+    "path": "agent-portraits/mlo.svg"
+  },
+  {
+    "slug": "aiops",
+    "name": "AIOps",
+    "industry": "AI Operations",
+    "path": "agent-portraits/aiops.svg"
+  },
+  {
+    "slug": "researcho",
+    "name": "Researcho",
+    "industry": "Research Analyst",
+    "path": "agent-portraits/researcho.svg"
+  },
+  {
+    "slug": "scrumo",
+    "name": "Scrumo",
+    "industry": "Scrum Master",
+    "path": "agent-portraits/scrumo.svg"
+  },
+  {
+    "slug": "integrato",
+    "name": "Integrato",
+    "industry": "Integration Engineer",
+    "path": "agent-portraits/integrato.svg"
+  },
+  {
+    "slug": "apigen",
+    "name": "APIGen",
+    "industry": "API Designer",
+    "path": "agent-portraits/apigen.svg"
+  },
+  {
+    "slug": "monitoro",
+    "name": "Monitoro",
+    "industry": "Observability Engineer",
+    "path": "agent-portraits/monitoro.svg"
+  },
+  {
+    "slug": "perfx",
+    "name": "PerfX",
+    "industry": "Performance Engineer",
+    "path": "agent-portraits/perfx.svg"
+  },
+  {
+    "slug": "uxres",
+    "name": "UXRes",
+    "industry": "UX Researcher",
+    "path": "agent-portraits/uxres.svg"
+  },
+  {
+    "slug": "socialo",
+    "name": "Socialo",
+    "industry": "Social Media Manager",
+    "path": "agent-portraits/socialo.svg"
+  },
+  {
+    "slug": "emailo",
+    "name": "Emailo",
+    "industry": "Email Automation",
+    "path": "agent-portraits/emailo.svg"
+  },
+  {
+    "slug": "growtho",
+    "name": "Growtho",
+    "industry": "Growth Hacker",
+    "path": "agent-portraits/growtho.svg"
+  },
+  {
+    "slug": "traino",
+    "name": "Traino",
+    "industry": "Training Specialist",
+    "path": "agent-portraits/traino.svg"
+  },
+  {
+    "slug": "feedbacko",
+    "name": "Feedbacko",
+    "industry": "Feedback Analyzer",
+    "path": "agent-portraits/feedbacko.svg"
+  },
+  {
+    "slug": "auditai",
+    "name": "AuditAI",
+    "industry": "Audit Specialist",
+    "path": "agent-portraits/auditai.svg"
+  },
+  {
+    "slug": "complianceo",
+    "name": "Complianceo",
+    "industry": "Compliance Officer",
+    "path": "agent-portraits/complianceo.svg"
+  },
+  {
+    "slug": "stratego",
+    "name": "Stratego",
+    "industry": "Strategy Consultant",
+    "path": "agent-portraits/stratego.svg"
+  },
+  {
+    "slug": "innovo",
+    "name": "Innovo",
+    "industry": "Innovation Advisor",
+    "path": "agent-portraits/innovo.svg"
   }
 ]
