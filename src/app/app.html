@@ -1,12 +1,35 @@
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="flex min-h-screen flex-col">
-	<app-header />
-	<main
-		id="main"
-		class="flex-1 scroll-mt-24 pt-16 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50 dark:focus-visible:ring-offset-[#0b0a14] md:pt-[4.75rem]"
-		tabindex="-1"
-	>
-		<router-outlet />
-	</main>
-	<app-footer />
-</div>
+
+@if (isAppLayout()) {
+  <!-- ─── Enterprise app shell: sidebar + topbar + content ─── -->
+  <div class="flex min-h-screen">
+    <app-sidebar />
+    <div
+      class="flex min-h-screen flex-1 flex-col"
+      style="margin-left: var(--sidebar-w)"
+    >
+      <app-topbar />
+      <main
+        id="main"
+        class="flex-1 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+        style="padding-top: var(--topbar-h)"
+        tabindex="-1"
+      >
+        <router-outlet />
+      </main>
+    </div>
+  </div>
+} @else {
+  <!-- ─── Marketing layout: global header + main + footer ─── -->
+  <div class="flex min-h-screen flex-col">
+    <app-header />
+    <main
+      id="main"
+      class="flex-1 scroll-mt-24 pt-16 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50 dark:focus-visible:ring-offset-[#0b0a14] md:pt-[4.75rem]"
+      tabindex="-1"
+    >
+      <router-outlet />
+    </main>
+    <app-footer />
+  </div>
+}

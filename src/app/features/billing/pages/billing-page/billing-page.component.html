@@ -1,0 +1,83 @@
+<div class="mx-auto max-w-4xl px-6 py-8">
+
+  <!-- Page header -->
+  <div class="mb-8">
+    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Account</p>
+    <h1 class="mt-1 text-2xl font-bold">Billing</h1>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-3">
+
+    <!-- Plan summary card -->
+    <div class="rounded-2xl border border-slate-700 bg-slate-900 p-6 lg:col-span-1">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Current plan</p>
+      <p class="mt-2 text-2xl font-bold text-white">{{ planNames[currentPlan()] }}</p>
+
+      @if (summary()?.monthlyPrice != null && summary()!.monthlyPrice! > 0) {
+        <p class="mt-1 text-sm text-slate-400">${{ summary()!.monthlyPrice }}/mo</p>
+      } @else if (currentPlan() === 'free') {
+        <p class="mt-1 text-sm text-slate-400">Free forever</p>
+      }
+
+      @if (currentPlan() !== 'enterprise') {
+        <a routerLink="/pricing"
+          class="mt-4 block rounded-lg bg-cyan-500 px-4 py-2.5 text-center text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400">
+          Upgrade plan
+        </a>
+      }
+      @if (currentPlan() !== 'free' && currentPlan() !== 'enterprise') {
+        <button class="mt-2 w-full rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-slate-400">
+          Manage subscription
+        </button>
+      }
+    </div>
+
+    <!-- Credit meter -->
+    <div class="lg:col-span-2">
+      @if (creditsTotal() !== infinity) {
+        <app-credit-meter
+          [used]="creditsUsed()"
+          [total]="creditsTotal()"
+          [resetAt]="resetAt" />
+      } @else {
+        <div class="rounded-2xl border border-slate-700 bg-slate-900 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Credits</p>
+          <p class="mt-2 text-2xl font-bold text-emerald-400">Unlimited</p>
+          <p class="mt-1 text-sm text-slate-500">Enterprise plan — no credit limits.</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Usage table -->
+  <div class="mt-6">
+    <app-usage-table [stats]="usageStats()" />
+  </div>
+
+  <!-- Plan comparison strip -->
+  @if (currentPlan() === 'free') {
+    <div class="mt-6 flex items-center justify-between rounded-2xl border border-cyan-500/30 bg-cyan-500/5 px-6 py-4">
+      <div>
+        <p class="text-sm font-semibold text-white">Unlock Pro for 600 credits/month</p>
+        <p class="mt-0.5 text-xs text-slate-400">Plus streaming, chains, and all 6 base agents — $29/mo.</p>
+      </div>
+      <a routerLink="/pricing"
+        class="shrink-0 rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400">
+        See plans
+      </a>
+    </div>
+  }
+  @if (currentPlan() === 'pro') {
+    <div class="mt-6 flex items-center justify-between rounded-2xl border border-violet-500/30 bg-violet-500/5 px-6 py-4">
+      <div>
+        <p class="text-sm font-semibold text-white">Unlock Team for shared workspaces</p>
+        <p class="mt-0.5 text-xs text-slate-400">3 seats, 3,000 credits/month, and premium agents — $99/mo.</p>
+      </div>
+      <a routerLink="/pricing"
+        class="shrink-0 rounded-lg border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-400 transition-colors hover:bg-violet-500/10">
+        Compare plans
+      </a>
+    </div>
+  }
+
+</div>

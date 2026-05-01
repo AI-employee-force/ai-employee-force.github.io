@@ -45,7 +45,28 @@
 
 		<div class="hidden items-center gap-2 lg:flex">
 			<app-theme-toggle />
-			<app-primary-button label="Request demo" href="/demo" variant="primary" />
+			@if (authService.isLoggedIn()) {
+				<div class="flex items-center gap-2">
+					<span class="max-w-[140px] truncate text-xs font-medium text-slate-500 dark:text-slate-400">
+						{{ authService.currentUser()?.email }}
+					</span>
+					<button
+						type="button"
+						class="rounded-lg border border-slate-200 bg-white/60 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-400 dark:hover:bg-white/[0.09]"
+						(click)="signOut()"
+					>
+						Sign out
+					</button>
+				</div>
+			} @else {
+				<a
+					routerLink="/login"
+					class="rounded-lg border border-slate-200 bg-white/60 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-white dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-400 dark:hover:bg-white/[0.09]"
+				>
+					Sign in
+				</a>
+				<app-primary-button label="Request demo" href="/demo" variant="primary" />
+			}
 		</div>
 
 		<div class="ml-auto flex items-center gap-2 lg:hidden">
@@ -86,7 +107,25 @@
 						{{ link.label }}
 					</a>
 				}
-				<app-primary-button label="Request demo" href="/demo" variant="primary" />
+				@if (authService.isLoggedIn()) {
+					<p class="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{{ authService.currentUser()?.email }}</p>
+					<button
+						type="button"
+						class="mt-1 rounded-xl border border-slate-200 bg-white/60 px-4 py-2.5 text-sm font-semibold text-slate-600 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-400"
+						(click)="signOut()"
+					>
+						Sign out
+					</button>
+				} @else {
+					<a
+						routerLink="/login"
+						class="mt-1 block rounded-xl border border-slate-200 bg-white/60 px-4 py-2.5 text-center text-sm font-semibold text-slate-600 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-400"
+						(click)="closeMenu()"
+					>
+						Sign in
+					</a>
+					<app-primary-button label="Request demo" href="/demo" variant="primary" />
+				}
 			</div>
 		</div>
 	}

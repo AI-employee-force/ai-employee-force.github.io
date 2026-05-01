@@ -1,0 +1,179 @@
+@if (showOnboarding()) {
+  <app-onboarding-overlay (dismissed)="onOnboardingDismissed()" />
+}
+
+<div class="page-container pb-16 pt-8 md:pt-12">
+
+  <!-- Page header -->
+  <div appReveal class="mb-10">
+    <p class="eyebrow mb-2">Your workspace</p>
+    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-4xl">
+      Dashboard
+    </h1>
+    <p class="mt-2 max-w-xl text-base text-slate-600 dark:text-slate-400">
+      Launch agents, review recent activity, and manage your installed AI employee roster.
+    </p>
+  </div>
+
+  <!-- Quick-launch grid -->
+  <section appReveal aria-labelledby="quick-launch-heading" class="mb-8">
+    <app-section-heading
+      eyebrow="Quick launch"
+      title="Top agents"
+      subtitle="Jump straight into a workspace — click any agent card to start a run."
+      [headingLevel]="2"
+    />
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      @for (agent of quickLaunchAgents(); track agent.slug) {
+        <a
+          [routerLink]="['/workspace', agent.slug]"
+          class="card-marketplace group relative flex items-center gap-4 p-4 outline-none transition-[transform,box-shadow] focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-50 motion-safe:hover:-translate-y-0.5 dark:focus-visible:ring-offset-[#0b0a14]"
+          [attr.aria-label]="'Open workspace for ' + agent.name"
+        >
+          <img
+            [src]="agent.portraitSrc"
+            alt=""
+            role="presentation"
+            width="48"
+            height="48"
+            class="h-12 w-12 shrink-0 rounded-full border border-slate-200 bg-white/60 object-contain p-1.5 dark:border-white/10 dark:bg-white/[0.05]"
+            loading="lazy"
+          />
+          <div class="min-w-0 flex-1">
+            <p class="truncate font-semibold text-slate-800 dark:text-slate-100">{{ agent.name }}</p>
+            <p class="truncate text-sm text-violet-700/90 dark:text-violet-300/85">{{ agent.roleTitle }}</p>
+            <p class="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{{ agent.shortDescription }}</p>
+          </div>
+          <!-- Favorite star -->
+          <button
+            type="button"
+            class="absolute right-10 top-3 rounded-md p-1 text-slate-300 transition hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 dark:text-slate-600 dark:hover:text-amber-400"
+            [class.text-amber-400]="favoritesService.isFavorite(agent.slug)"
+            [class.dark:text-amber-400]="favoritesService.isFavorite(agent.slug)"
+            [attr.aria-label]="(favoritesService.isFavorite(agent.slug) ? 'Remove from favorites: ' : 'Add to favorites: ') + agent.name"
+            (click)="toggleFavorite(agent.slug, $event)"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true"
+              [attr.fill]="favoritesService.isFavorite(agent.slug) ? 'currentColor' : 'none'"
+              stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </button>
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition-transform motion-safe:group-hover:translate-x-0.5 dark:text-slate-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      }
+    </div>
+  </section>
+
+  <!-- Prompt templates -->
+  <section appReveal aria-labelledby="templates-heading" class="mb-8">
+    <app-section-heading
+      eyebrow="Quick prompts"
+      title="Templates"
+      subtitle="One click to start with a pre-filled prompt."
+      [headingLevel]="2"
+    />
+    <app-templates-grid />
+  </section>
+
+  <!-- Milestone card -->
+  <div appReveal class="mb-8">
+    <app-milestone-card
+      [completedCount]="completedCount()"
+      [hasChained]="hasChained()"
+    />
+  </div>
+
+  <!-- Continue your work (only when there's an incomplete chain to resume) -->
+  @if (lastChain(); as chain) {
+    <div appReveal class="mb-8">
+      <app-continue-chain-card [chain]="chain" />
+    </div>
+  }
+
+  <!-- Two-column lower section -->
+  <div class="grid gap-8 lg:grid-cols-[1fr_360px]">
+
+    <!-- Recent runs -->
+    <section appReveal aria-labelledby="recent-runs-heading">
+      <div class="mb-4 flex items-center justify-between">
+        <app-section-heading
+          eyebrow="Activity"
+          title="Recent runs"
+          [headingLevel]="2"
+          density="compact"
+        />
+        <a
+          routerLink="/runs"
+          class="text-sm font-semibold text-cyan-600 underline-offset-4 hover:underline dark:text-cyan-400"
+        >
+          View all
+        </a>
+      </div>
+      <app-recent-runs-table [runs]="recentRuns()" [agentMap]="agentMap()" />
+    </section>
+
+    <!-- Installed agents -->
+    <section appReveal aria-labelledby="installed-agents-heading">
+      <div class="mb-4">
+        <app-section-heading
+          eyebrow="Roster"
+          title="Installed agents"
+          [headingLevel]="2"
+          density="compact"
+        />
+      </div>
+      <app-installed-agents-grid
+        [installedAgents]="installedAgents()"
+        [agentMap]="agentMap()"
+      />
+    </section>
+  </div>
+
+  <!-- Saved runs (only shown when user has saved at least one) -->
+  @if (savedRuns().length > 0) {
+    <section appReveal aria-labelledby="saved-runs-heading" class="mt-10">
+      <div class="mb-4 flex items-center gap-2">
+        <svg class="h-4 w-4 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16l-7-3.5L5 21V5z"/>
+        </svg>
+        <app-section-heading
+          eyebrow="Pinned"
+          title="Saved runs"
+          [headingLevel]="2"
+          density="compact"
+        />
+      </div>
+      <div class="space-y-2">
+        @for (run of savedRuns(); track run.id) {
+          <div class="flex items-start gap-3 rounded-xl border border-cyan-200/60 bg-cyan-50/40 px-4 py-3 dark:border-cyan-400/15 dark:bg-cyan-500/[0.05]">
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{{ run.agentName }}</p>
+              <p class="truncate text-xs text-slate-500 dark:text-slate-400">{{ run.promptPreview }}</p>
+            </div>
+            @if (run.outputSummary) {
+              <p class="hidden max-w-xs truncate text-xs text-slate-500 dark:text-slate-400 sm:block">
+                {{ run.outputSummary }}
+              </p>
+            }
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- CTA -->
+  <div appReveal class="mt-14">
+    <app-cta-section [config]="workspaceCta" />
+  </div>
+
+</div>

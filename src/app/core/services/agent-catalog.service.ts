@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MOCK_AGENTS } from '../data/mock-agents';
+import { STARTER_PROMPTS } from '../data/mock-workspace';
 import type { Agent, AgentCategory } from '../models/site.models';
+import type { StarterPrompt } from '../models/workspace.models';
 
 /**
  * Facade over the agent roster. Swap `MOCK_AGENTS` for an HTTP-backed source without changing feature components.
@@ -29,16 +31,25 @@ export class AgentCatalogService {
 		return [...sameCat, ...otherCat].slice(0, limit);
 	}
 
-	filterAgents(query: string, category: AgentCategory | 'all'): Agent[] {
+	filterAgents(query: string, category: AgentCategory | 'all', useCase: string | null = null): Agent[] {
 		const q = query.trim().toLowerCase();
+		const uc = useCase?.trim().toLowerCase() ?? null;
 		return this.agents.filter((a) => {
 			const catOk = category === 'all' || a.category === category;
 			if (!catOk) return false;
+			if (uc) {
+				const useCaseHay = `${a.useCases.join(' ')} ${a.relatedKeywords.join(' ')}`.toLowerCase();
+				if (!useCaseHay.includes(uc)) return false;
+			}
 			if (!q) return true;
 			const hay =
 				`${a.name} ${a.roleTitle} ${a.shortDescription} ${a.longDescription} ${a.categoryLabel} ${a.tools.join(' ')}`.toLowerCase();
 			return hay.includes(q);
 		});
+	}
+
+	getStarterPrompts(slug: string): StarterPrompt[] {
+		return STARTER_PROMPTS[slug] ?? [];
 	}
 
 	getCategories(): { id: AgentCategory | 'all'; label: string }[] {

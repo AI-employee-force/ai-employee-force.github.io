@@ -1,0 +1,71 @@
+@if (targets().length > 0) {
+  <div class="rounded-2xl border border-violet-200/70 bg-violet-50/50 p-5 dark:border-violet-400/15 dark:bg-violet-500/[0.06]">
+
+    <!-- Heading -->
+    <div class="mb-4 flex items-center gap-2">
+      <svg
+        class="h-4 w-4 shrink-0 text-violet-600 dark:text-violet-400"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+      </svg>
+      <p class="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">
+        Continue with next agent
+      </p>
+    </div>
+
+    <!-- Target agent cards -->
+    <div class="flex flex-wrap gap-3">
+      @for (target of targets(); track target.slug) {
+        <div
+          class="flex min-w-[220px] flex-1 items-center gap-3 rounded-xl border border-violet-200/60 bg-white/70 px-4 py-3 shadow-sm dark:border-violet-400/10 dark:bg-white/[0.04]"
+        >
+          <!-- Portrait -->
+          <img
+            [src]="target.portraitSrc"
+            alt=""
+            role="presentation"
+            width="40"
+            height="40"
+            class="h-10 w-10 shrink-0 rounded-full border border-slate-200 bg-white/60 object-contain p-1 dark:border-white/10 dark:bg-white/[0.05]"
+            loading="lazy"
+          />
+
+          <!-- Agent info -->
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">
+              {{ target.agent?.name ?? target.slug }}
+            </p>
+            <p class="truncate text-xs text-violet-700/80 dark:text-violet-300/80">
+              {{ target.agent?.roleTitle ?? '' }}
+            </p>
+          </div>
+
+          <!-- Handoff button -->
+          <button
+            type="button"
+            class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-violet-400/40 bg-violet-500/10 px-3 py-1.5 text-xs font-bold text-violet-700 transition hover:border-violet-500/60 hover:bg-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 dark:border-violet-400/30 dark:bg-violet-400/10 dark:text-violet-200 dark:hover:border-violet-400/50 dark:hover:bg-violet-400/20"
+            (click)="handoff(target.slug)"
+            [attr.aria-label]="target.label"
+          >
+            {{ target.label }}
+            <svg
+              class="h-3 w-3"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

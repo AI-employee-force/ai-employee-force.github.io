@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PRIMARY_NAV, BRAND_LOGO_SRC, BRAND_NAME } from '../../../core/constants/navigation';
+import { AuthService } from '../../../core/services/auth.service';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
@@ -24,12 +25,12 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 })
 export class HeaderComponent {
 	private readonly doc = inject(DOCUMENT);
+	protected readonly authService = inject(AuthService);
 
 	protected readonly nav = PRIMARY_NAV;
 	protected readonly brand = BRAND_NAME;
 	protected readonly logoSrc = BRAND_LOGO_SRC;
 	protected readonly menuOpen = signal(false);
-
 	protected readonly headerScrolled = signal(false);
 
 	constructor() {
@@ -41,7 +42,6 @@ export class HeaderComponent {
 
 	protected readonly shellClass = computed(() => {
 		const scrolled = this.headerScrolled();
-		/** `fixed` pins to the viewport; `sticky` breaks if any ancestor sets overflow/transform. Do not add `relative` here. */
 		const base =
 			'fixed top-0 left-0 right-0 z-[100] w-full border-b backdrop-blur-xl transition-[box-shadow,background-color,border-color] duration-300 ease-out';
 		return scrolled
@@ -68,5 +68,10 @@ export class HeaderComponent {
 
 	closeMenu(): void {
 		this.menuOpen.set(false);
+	}
+
+	protected signOut(): void {
+		this.authService.logout();
+		this.closeMenu();
 	}
 }

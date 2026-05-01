@@ -53,7 +53,13 @@
 							{{ a.heroTagline }}
 						</p>
 						<div class="flex flex-wrap gap-3">
-							<app-primary-button label="Deploy this agent" href="/demo" variant="primary" />
+							<a
+								[routerLink]="['/workspace', a.slug]"
+								class="inline-flex items-center gap-2 rounded-full border border-cyan-400/50 bg-gradient-to-r from-cyan-500/20 to-violet-500/15 px-5 py-2.5 text-sm font-bold text-cyan-800 no-underline shadow-sm transition hover:border-cyan-400/70 hover:from-cyan-500/30 hover:to-violet-500/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 dark:border-cyan-400/35 dark:from-cyan-500/20 dark:to-violet-500/12 dark:text-cyan-200 dark:hover:border-cyan-400/55 dark:hover:from-cyan-500/25 dark:hover:to-violet-500/18"
+							>
+								<svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+								Open Workspace
+							</a>
 							<app-primary-button label="Book a demo" href="/demo" variant="outline" />
 							<app-primary-button label="Browse marketplace" href="/agents" variant="ghost" />
 						</div>
@@ -234,7 +240,7 @@
 					</div>
 					<div class="grid gap-6 md:grid-cols-3">
 						@for (rel of relatedAgents(); track rel.slug) {
-							<app-agent-card [agent]="rel" />
+							<app-agent-card [agent]="rel" variant="related" />
 						}
 					</div>
 				</section>
@@ -258,7 +264,13 @@
 						handoffs, and success metrics.
 					</p>
 					<div class="flex flex-wrap justify-center gap-3">
-						<app-primary-button label="Request deployment" href="/demo" variant="primary" />
+						<a
+							[routerLink]="['/workspace', a.slug]"
+							class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-violet-700 no-underline shadow-md transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+						>
+							<svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+							Open {{ a.name }} Workspace
+						</a>
 						<app-primary-button label="Talk to sales" href="/demo" variant="ghost" />
 					</div>
 				</div>

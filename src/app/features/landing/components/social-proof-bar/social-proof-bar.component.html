@@ -1,0 +1,49 @@
+<!-- Slim top bar: counters + early-access badge -->
+<div class="border-y border-slate-200/70 bg-slate-50/60 py-4 dark:border-white/[0.07] dark:bg-slate-900/40">
+  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4 px-5">
+    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+      Trusted by early-access teams building with AI
+    </p>
+    <div class="flex items-center gap-4">
+      <span class="text-sm font-bold text-slate-700 dark:text-slate-200">55+ AI employees</span>
+      <span class="rounded-full bg-amber-400/20 px-3 py-1 text-xs font-semibold text-amber-600 dark:text-amber-400">Early access open</span>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials strip -->
+<div class="border-b border-slate-200/70 bg-white/80 py-10 dark:border-white/[0.07] dark:bg-transparent">
+  <div class="mx-auto max-w-[1200px] px-5">
+    <p class="mb-8 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+      Early access
+    </p>
+    <div class="grid gap-5 md:grid-cols-3">
+      @for (t of testimonials; track t.author) {
+        <figure class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-6 dark:border-white/[0.08] dark:bg-slate-900/50">
+          <blockquote class="mb-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            "{{ t.quote }}"
+          </blockquote>
+          <figcaption class="flex items-center gap-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/30 to-violet-500/30 text-[0.6rem] font-bold text-cyan-700 dark:text-cyan-300">
+              {{ t.author.slice(0, 2).toUpperCase() }}
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">{{ t.author }}</p>
+              <p class="text-[0.68rem] text-slate-500 dark:text-slate-500">{{ t.role }}, {{ t.company }}</p>
+            </div>
+          </figcaption>
+        </figure>
+      }
+    </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a routerLink="/contact"
+        class="rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-400">
+        Join the early access waitlist
+      </a>
+      <a routerLink="/demo"
+        class="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-500 dark:border-white/20 dark:text-slate-300 dark:hover:border-white/40">
+        Book a team demo
+      </a>
+    </div>
+  </div>
+</div>

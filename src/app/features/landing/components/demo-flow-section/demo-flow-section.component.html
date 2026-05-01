@@ -1,0 +1,107 @@
+<section class="mx-auto max-w-[1200px] px-5 py-14 md:py-20">
+  <app-section-heading
+    eyebrow="See it work"
+    title="Ship a feature — from idea to test plan — in minutes"
+    subtitle="One prompt to Producto triggers a full agent chain. Structured work flows from PM to Frontend to QA automatically."
+    [align]="'center'"
+  />
+
+  <!-- Chain visualization -->
+  <div
+    appReveal
+    class="mx-auto max-w-3xl overflow-hidden rounded-[22px] border border-slate-200/80 bg-white/70 p-6 shadow-sm backdrop-blur-md dark:border-white/[0.08] dark:bg-slate-900/50 md:p-8"
+    role="img"
+    aria-label="Agent chain diagram: Producto feeds Fronto feeds Testo"
+  >
+    <!-- Nodes row -->
+    <div class="flex flex-col items-stretch gap-0 sm:flex-row sm:items-start sm:gap-0">
+      @for (node of nodes; track node.slug; let i = $index; let last = $last) {
+        <!-- Node card -->
+        <div
+          class="flex flex-1 flex-col items-center text-center opacity-0 transition-all duration-500"
+          [class.reveal-visible]="true"
+          [style.transition-delay]="i * 150 + 'ms'"
+          style="opacity:1"
+        >
+          <!-- Portrait -->
+          <div class="relative mb-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full text-sm font-extrabold text-white shadow-lg"
+              [style.background]="'linear-gradient(135deg, var(' + node.accentVar + '), rgba(139,92,246,0.8))'">
+              {{ node.name.slice(0, 2) }}
+            </div>
+            <!-- Completed tick for first two, pulse for last -->
+            @if (i < 2) {
+              <span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[0.6rem] font-bold text-white">✓</span>
+            } @else {
+              <span class="absolute -bottom-1 -right-1 h-3 w-3 animate-pulse rounded-full bg-cyan-400 ring-2 ring-cyan-400/30"></span>
+            }
+          </div>
+          <p class="text-xs font-bold text-slate-900 dark:text-slate-100">{{ node.name }}</p>
+          <p class="mb-2 text-[0.65rem] text-slate-500 dark:text-slate-400">{{ node.role }}</p>
+          <!-- Prompt chip -->
+          <p class="mb-2 rounded-full border border-slate-200/80 bg-slate-100/80 px-2.5 py-1 text-[0.6rem] text-slate-500 dark:border-white/10 dark:bg-slate-800/60 dark:text-slate-400">
+            "{{ node.prompt }}"
+          </p>
+          <!-- Output badge -->
+          <span class="rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold"
+            [style.background]="'color-mix(in srgb, var(' + node.accentVar + ') 15%, transparent)'"
+            [style.color]="'var(' + node.accentVar + ')'">
+            {{ node.outputType }}
+          </span>
+        </div>
+
+        <!-- Arrow between nodes -->
+        @if (!last) {
+          <div class="flex flex-col items-center justify-center px-2 py-4 sm:py-0 sm:pt-5">
+            <svg class="h-4 w-4 rotate-90 text-slate-300 dark:text-slate-600 sm:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- Output preview -->
+    <div class="mt-6 rounded-xl border border-slate-200/80 bg-slate-50/80 dark:border-white/[0.08] dark:bg-slate-800/40">
+      <button
+        (click)="toggleOutput()"
+        class="flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+        [attr.aria-expanded]="outputExpanded()"
+      >
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          Producto output — PRD overview
+        </span>
+        <span [class.rotate-180]="outputExpanded()" class="transition-transform">↓</span>
+      </button>
+      @if (outputExpanded()) {
+        <div class="border-t border-slate-200/70 px-5 pb-4 pt-3 dark:border-white/[0.06]">
+          <p class="mb-3 text-xs text-slate-700 dark:text-slate-300">{{ output.overview }}</p>
+          <p class="mb-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-slate-400">Action items</p>
+          <ul class="mb-3 space-y-1">
+            @for (action of output.actions; track action) {
+              <li class="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+                <span class="mt-0.5 text-cyan-500">→</span> {{ action }}
+              </li>
+            }
+          </ul>
+          <p class="mb-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-slate-400">Follow-ups</p>
+          <ul class="space-y-1">
+            @for (fq of output.followUps; track fq) {
+              <li class="flex items-start gap-1.5 text-xs text-slate-500 dark:text-slate-500">
+                <span class="mt-0.5 text-violet-400">?</span> {{ fq }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="mt-6 text-center">
+    <a routerLink="/agents"
+      class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 transition-colors hover:text-cyan-500 dark:text-cyan-400 dark:hover:text-cyan-300">
+      Try this chain yourself →
+    </a>
+  </div>
+</section>

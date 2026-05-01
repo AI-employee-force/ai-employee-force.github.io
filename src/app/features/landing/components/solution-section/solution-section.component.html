@@ -1,0 +1,43 @@
+<section class="mx-5 rounded-[22px] bg-gradient-to-b from-cyan-500/8 to-transparent px-5 py-14 md:mx-auto md:max-w-[1200px] md:px-8 md:py-20">
+  <app-section-heading
+    eyebrow="The solution"
+    title="AI employees that know their job"
+    subtitle="Install specialist AI workers. Give them a prompt. Get back structured, actionable output — ready to hand off."
+    [align]="'center'"
+  />
+  <div class="grid gap-5 sm:grid-cols-2">
+    @for (pillar of pillars; track pillar.title; let i = $index) {
+      <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-6 dark:border-white/[0.08] dark:bg-slate-900/50">
+        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl"
+          [style.background]="'color-mix(in srgb, var(' + pillar.accentVar + ') 15%, transparent)'">
+          @if (i === 0) {
+            <!-- Person/hire icon -->
+            <svg class="h-5 w-5" [style.color]="'var(' + pillar.accentVar + ')'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+          }
+          @if (i === 1) {
+            <!-- Document/structured output icon -->
+            <svg class="h-5 w-5" [style.color]="'var(' + pillar.accentVar + ')'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0121 9.414V19a2 2 0 01-2 2z"/>
+            </svg>
+          }
+          @if (i === 2) {
+            <!-- Chain/link icon -->
+            <svg class="h-5 w-5" [style.color]="'var(' + pillar.accentVar + ')'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+          }
+          @if (i === 3) {
+            <!-- Shield/control icon -->
+            <svg class="h-5 w-5" [style.color]="'var(' + pillar.accentVar + ')'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          }
+        </div>
+        <h3 class="mb-2 text-base font-bold text-slate-900 dark:text-slate-100">{{ pillar.title }}</h3>
+        <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ pillar.description }}</p>
+      </div>
+    }
+  </div>
+</section>

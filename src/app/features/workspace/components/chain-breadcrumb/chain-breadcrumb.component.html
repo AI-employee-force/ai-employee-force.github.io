@@ -1,0 +1,65 @@
+<div
+  class="flex items-center gap-1 overflow-x-auto rounded-2xl border border-slate-200/80 bg-white/50 px-4 py-3 scrollbar-none dark:border-white/[0.07] dark:bg-white/[0.03]"
+  aria-label="Agent chain progress"
+>
+  @for (node of nodes(); track node.slug; let last = $last) {
+
+    <!-- Step pill -->
+    <div [class]="nodeClass(node.state)" [attr.aria-current]="node.state === 'current' ? 'step' : null">
+      <!-- Status dot -->
+      <span [class]="dotClass(node.state)" aria-hidden="true"></span>
+
+      @if (node.state === 'completed') {
+        <!-- Completed: show portrait + checkmark -->
+        <img
+          [src]="node.portraitSrc"
+          alt=""
+          role="presentation"
+          width="16"
+          height="16"
+          class="h-4 w-4 shrink-0 rounded-full border border-emerald-400/40 object-contain dark:border-emerald-400/20"
+        />
+        <span>{{ node.label }}</span>
+        <svg
+          class="h-3 w-3 shrink-0 opacity-80"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      } @else if (node.state === 'current') {
+        <!-- Current: portrait + label -->
+        <img
+          [src]="node.portraitSrc"
+          alt=""
+          role="presentation"
+          width="16"
+          height="16"
+          class="h-4 w-4 shrink-0 rounded-full border border-cyan-400/50 object-contain dark:border-cyan-400/30"
+        />
+        <span>{{ node.label }}</span>
+      } @else {
+        <!-- Pending: label only (muted) -->
+        <span>{{ node.label }}</span>
+      }
+    </div>
+
+    <!-- Arrow separator (not after last node) -->
+    @if (!last) {
+      <svg
+        class="h-3 w-3 shrink-0 text-slate-300 dark:text-slate-600"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+    }
+
+  }
+</div>

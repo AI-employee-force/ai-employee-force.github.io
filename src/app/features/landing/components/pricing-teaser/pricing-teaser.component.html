@@ -1,0 +1,56 @@
+<section class="mx-auto max-w-[1200px] px-5 py-14 md:py-20">
+  <app-section-heading
+    eyebrow="Pricing"
+    title="Start free. Scale when you're ready."
+    subtitle="No credit card required. No seat surprises. Upgrade when your team needs more."
+    [align]="'center'"
+  />
+
+  <div class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    @for (plan of plans; track plan.id) {
+      <div class="relative rounded-2xl border p-5 transition-shadow"
+        [class]="plan.popular
+          ? 'border-cyan-400 ring-2 ring-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-500/10'
+          : 'border-slate-200/80 bg-white/70 dark:border-white/[0.08] dark:bg-slate-900/50'">
+
+        @if (plan.popular) {
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="rounded-full bg-cyan-500 px-3 py-0.5 text-[0.65rem] font-bold text-white shadow-sm">
+              Most popular
+            </span>
+          </div>
+        }
+
+        <p class="mb-1 text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">{{ plan.name }}</p>
+
+        <div class="mb-1 flex items-baseline gap-1">
+          @if (plan.price === null) {
+            <span class="text-2xl font-extrabold text-slate-900 dark:text-slate-100">Custom</span>
+          } @else if (plan.price === 0) {
+            <span class="text-2xl font-extrabold text-slate-900 dark:text-slate-100">Free</span>
+          } @else {
+            <span class="text-2xl font-extrabold text-slate-900 dark:text-slate-100">${{ plan.price }}</span>
+            <span class="text-xs text-slate-400">/mo</span>
+          }
+        </div>
+
+        <p class="mb-4 text-[0.7rem] text-slate-500 dark:text-slate-400">{{ plan.summary }}</p>
+
+        <a [routerLink]="plan.ctaPath"
+          class="block w-full rounded-lg py-2 text-center text-xs font-bold transition-colors"
+          [class]="plan.popular
+            ? 'bg-cyan-500 text-white hover:bg-cyan-400'
+            : 'border border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/5'">
+          {{ plan.ctaLabel }}
+        </a>
+      </div>
+    }
+  </div>
+
+  <p class="mt-8 text-center">
+    <a routerLink="/pricing"
+      class="text-sm font-semibold text-cyan-600 transition-colors hover:text-cyan-500 dark:text-cyan-400 dark:hover:text-cyan-300">
+      See full pricing →
+    </a>
+  </p>
+</section>

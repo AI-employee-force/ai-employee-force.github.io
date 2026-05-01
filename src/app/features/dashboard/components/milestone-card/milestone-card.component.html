@@ -1,0 +1,42 @@
+<div class="rounded-2xl border border-violet-200/70 bg-violet-50/50 px-5 py-4 dark:border-violet-400/15 dark:bg-violet-500/[0.06]">
+  <div class="flex flex-wrap items-center gap-4">
+
+    <!-- Badge + message -->
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      @if (nearestAchieved(); as badge) {
+        <span
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-lg font-extrabold text-violet-700 dark:bg-violet-400/15 dark:text-violet-300"
+          aria-hidden="true"
+        >
+          {{ badge }}
+        </span>
+      } @else {
+        <span
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-xl dark:bg-violet-400/10"
+          aria-hidden="true"
+        >
+          🎯
+        </span>
+      }
+      <p class="text-sm text-slate-700 dark:text-slate-300">{{ message() }}</p>
+    </div>
+
+    <!-- Progress to next milestone -->
+    @if (nextMilestone(); as next) {
+      <p class="text-xs font-medium text-violet-600 dark:text-violet-400">
+        {{ completedCount() }}/{{ next }} to next milestone
+      </p>
+    }
+  </div>
+
+  <!-- Chain tip -->
+  @if (showChainTip()) {
+    <div class="mt-3 flex items-center gap-2 rounded-xl border border-violet-300/50 bg-white/60 px-3 py-2 dark:border-violet-400/20 dark:bg-white/[0.04]">
+      <span class="text-sm" aria-hidden="true">🔗</span>
+      <p class="text-xs text-slate-600 dark:text-slate-400">
+        <strong class="font-semibold text-violet-700 dark:text-violet-300">Try chaining agents:</strong>
+        Producto → Fronto → Testo to build a full product from idea to UI to tests.
+      </p>
+    </div>
+  }
+</div>

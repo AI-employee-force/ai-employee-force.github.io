@@ -1,0 +1,32 @@
+<div class="rounded-2xl border border-slate-700 bg-slate-900 p-6">
+  <div class="mb-4 flex items-start justify-between">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Credits</p>
+      @if (isUnlimited()) {
+        <p class="mt-1 text-2xl font-bold text-emerald-400">Unlimited</p>
+      } @else {
+        <p class="mt-1 text-2xl font-bold" [class]="colorClass()">
+          {{ remaining() | number }} <span class="text-sm font-normal text-slate-400">remaining</span>
+        </p>
+      }
+    </div>
+    @if (!isUnlimited()) {
+      <span class="rounded-full px-2.5 py-1 text-xs font-semibold"
+        [class]="percent() >= 90 ? 'bg-red-500/20 text-red-400' : percent() >= 70 ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400'">
+        {{ percent() }}% used
+      </span>
+    }
+  </div>
+
+  @if (!isUnlimited()) {
+    <!-- Progress bar -->
+    <div class="mb-3 h-2 overflow-hidden rounded-full bg-slate-800">
+      <div class="h-full rounded-full transition-all duration-500" [class]="barClass()" [style.width.%]="percent()"></div>
+    </div>
+
+    <div class="flex justify-between text-xs text-slate-500">
+      <span>{{ used() | number }} used of {{ total() | number }}</span>
+      <span>Resets {{ resetDate() }}</span>
+    </div>
+  }
+</div>

@@ -1,0 +1,64 @@
+<div class="flex flex-wrap items-center gap-4 rounded-2xl border border-cyan-200/70 bg-cyan-50/50 px-5 py-4 dark:border-cyan-400/15 dark:bg-cyan-500/[0.06]">
+
+  <!-- Label -->
+  <div class="shrink-0">
+    <p class="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-cyan-700 dark:text-cyan-400">Continue your work</p>
+    <p class="mt-0.5 text-sm text-slate-600 dark:text-slate-400">Pick up where you left off</p>
+  </div>
+
+  <!-- Chain nodes -->
+  <div class="flex flex-1 items-center gap-2">
+    @for (node of nodes(); track node.slug; let last = $last) {
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col items-center gap-1">
+          <div
+            class="relative flex h-10 w-10 items-center justify-center rounded-full border-2 transition"
+            [class]="node.state === 'completed' ? 'border-cyan-400 bg-cyan-400/15 dark:border-cyan-400 dark:bg-cyan-400/15'
+                   : node.state === 'next'      ? 'border-violet-400 bg-violet-400/15 ring-2 ring-violet-400/30 animate-pulse dark:border-violet-400 dark:bg-violet-400/15'
+                   :                              'border-slate-200 bg-white/50 opacity-50 dark:border-white/10 dark:bg-white/[0.03]'"
+          >
+            <img
+              [src]="node.portraitSrc"
+              alt=""
+              role="presentation"
+              width="28"
+              height="28"
+              class="h-7 w-7 rounded-full object-contain"
+            />
+            @if (node.state === 'completed') {
+              <span
+                class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-cyan-500 dark:bg-cyan-400"
+                aria-hidden="true"
+              >
+                <svg class="h-2.5 w-2.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+            }
+          </div>
+          <span class="text-[0.65rem] font-medium" [class]="node.state === 'pending' ? 'text-slate-400 dark:text-slate-600' : 'text-slate-600 dark:text-slate-400'">
+            {{ node.label }}
+          </span>
+        </div>
+        @if (!last) {
+          <svg class="mb-5 h-3 w-3 shrink-0 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- CTA -->
+  <button
+    type="button"
+    class="inline-flex shrink-0 items-center gap-2 rounded-xl border border-cyan-400/60 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-300 dark:hover:bg-cyan-400/20"
+    (click)="resume()"
+  >
+    Continue
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+</div>

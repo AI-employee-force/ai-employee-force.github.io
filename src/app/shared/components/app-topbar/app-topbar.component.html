@@ -1,0 +1,49 @@
+<div
+  class="fixed right-0 top-0 z-[80] flex items-center gap-4 border-b border-slate-200/80 bg-white/90 px-5 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0d0b18]/90"
+  style="left: var(--sidebar-w); height: var(--topbar-h)"
+  role="banner"
+  aria-label="Application toolbar"
+>
+  <!-- Page title -->
+  <h1 class="text-sm font-semibold text-slate-800 dark:text-slate-100">
+    {{ pageTitle() }}
+  </h1>
+
+  <!-- Divider -->
+  <span class="h-4 w-px bg-slate-200/80 dark:bg-white/[0.08]" aria-hidden="true"></span>
+
+  <!-- Search (command palette hint) -->
+  <button
+    type="button"
+    class="flex flex-1 max-w-xs items-center gap-2.5 rounded-xl border border-slate-200/80 bg-slate-50/80 px-3 py-1.5 text-left text-sm text-slate-500 transition hover:border-slate-300/80 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 dark:border-white/[0.07] dark:bg-white/[0.03] dark:text-slate-500 dark:hover:border-white/12 dark:hover:bg-white/[0.06]"
+    aria-label="Search agents (press Ctrl+K)"
+  >
+    <!-- Search icon -->
+    <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/>
+    </svg>
+    <span class="flex-1 text-xs">Search agents…</span>
+    <kbd class="hidden rounded-md border border-slate-200/80 bg-white/60 px-1.5 py-0.5 text-[0.6rem] font-semibold text-slate-400 sm:inline-block dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-500">⌘K</kbd>
+  </button>
+
+  <!-- Right section -->
+  <div class="ml-auto flex items-center gap-2">
+    <!-- Notification bell -->
+    <button
+      type="button"
+      class="relative flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200/60 bg-white/40 text-slate-500 transition hover:border-slate-300/80 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 dark:border-white/[0.07] dark:bg-white/[0.03] dark:text-slate-400 dark:hover:border-white/12 dark:hover:bg-white/[0.06]"
+      aria-label="Notifications"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17H5a2 2 0 01-2-2v-1c0-3 2-5 4-6V7a5 5 0 0110 0v1c2 1 4 3 4 6v1a2 2 0 01-2 2h-4zm0 0a3 3 0 01-6 0"/>
+      </svg>
+      <!-- Unread dot -->
+      <span
+        class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-cyan-500"
+        aria-hidden="true"
+      ></span>
+    </button>
+
+    <app-theme-toggle [compact]="true" />
+  </div>
+</div>

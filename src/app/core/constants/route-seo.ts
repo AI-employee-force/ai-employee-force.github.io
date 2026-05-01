@@ -50,4 +50,38 @@ export const ROUTE_SEO = {
 		description: 'The page you requested does not exist. Explore the platform or browse the agent marketplace.',
 		robots: 'noindex, nofollow',
 	} satisfies PageSeo,
+
+	dashboard: {
+		title: 'Dashboard — AI Employee Force',
+		description:
+			'Launch agents, review recent runs, and manage your installed AI employee roster from your personal workspace dashboard.',
+		canonicalPath: '/dashboard',
+	} satisfies PageSeo,
+
+	workspace: {
+		title: 'Agent workspace — AI Employee Force',
+		description:
+			'Run prompts, explore structured outputs, and take action with your deployed AI employee in a dedicated workspace.',
+		robots: 'noindex, nofollow',
+	} satisfies PageSeo,
+
+	runs: {
+		title: 'Run history — AI Employee Force',
+		description:
+			'Review all previous agent runs, filter by status, and reopen any session to continue where you left off.',
+		canonicalPath: '/runs',
+	} satisfies PageSeo,
+
+	pricing: {
+		title: 'Pricing — AI Employee Force',
+		description:
+			'Simple, transparent pricing for your AI workforce. Start free, scale with Pro or Team, or talk to us about Enterprise.',
+		canonicalPath: '/pricing',
+	} satisfies PageSeo,
+
+	billing: {
+		title: 'Billing — AI Employee Force',
+		description: 'Manage your subscription, monitor credit usage, and view billing history.',
+		robots: 'noindex, nofollow',
+	} satisfies PageSeo,
 } as const;

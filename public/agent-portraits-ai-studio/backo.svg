@@ -1,0 +1,78 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Backo uniquely colored AI studio bot">
+<defs>
+  <linearGradient id="card_backo" x1="18" y1="16" x2="238" y2="240" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#F9EBD4"/>
+    <stop offset="52%" stop-color="#FFFFFF"/>
+    <stop offset="100%" stop-color="#D7F5F8"/>
+  </linearGradient>
+  <radialGradient id="aura_backo" cx="50%" cy="38%" r="64%">
+    <stop offset="0%" stop-color="#B6F0F7" stop-opacity="0.96"/>
+    <stop offset="58%" stop-color="#2CD8ED" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#E89917" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="body_backo" x1="77" y1="38" x2="177" y2="218" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FBFDFF"/>
+    <stop offset="30%" stop-color="#CAC9D0"/>
+    <stop offset="68%" stop-color="#9B869E"/>
+    <stop offset="100%" stop-color="#E89917"/>
+  </linearGradient>
+  <linearGradient id="screen_backo" x1="82" y1="68" x2="174" y2="142" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#6D5077"/>
+    <stop offset="100%" stop-color="#2825A8"/>
+  </linearGradient>
+  <linearGradient id="accent_backo" x1="40" y1="32" x2="212" y2="222" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#2CD8ED"/>
+    <stop offset="100%" stop-color="#E89917"/>
+  </linearGradient>
+  <linearGradient id="glass_backo" x1="79" y1="61" x2="178" y2="146" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.62"/>
+    <stop offset="54%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <filter id="shadow_backo" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#E89917" flood-opacity="0.22"/>
+    <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#2CD8ED" flood-opacity="0.18"/>
+  </filter>
+  <filter id="glow_backo" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <style>
+    .bot { animation: float 4.5s ease-in-out infinite; transform-origin: 128px 132px; }
+    .orbit { animation: orbit 10s linear infinite; transform-origin: 128px 129px; }
+    .prop { animation: prop 3.9s ease-in-out infinite; transform-origin: 194px 126px; }
+    .shine { animation: shine 3.2s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes prop { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(2deg); } }
+    @keyframes shine { 0%,100% { opacity:.2; transform: translateX(-8px); } 50% { opacity:.52; transform: translateX(8px); } }
+  </style>
+</defs>
+<rect width="256" height="256" rx="48" fill="url(#card_backo)"/>
+<circle cx="128" cy="124" r="100" fill="url(#aura_backo)"/>
+<g opacity="0.42"><path d="M38 82h180M34 129h188M44 176h168" stroke="#FFFFFF" stroke-width="1"/><path d="M80 34v184M128 28v200M176 38v180" stroke="#FFFFFF" stroke-width="1"/></g>
+<g class="orbit" opacity="0.68"><ellipse cx="128" cy="130" rx="86" ry="34" fill="none" stroke="url(#accent_backo)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="28 14"/><circle cx="210" cy="130" r="4.4" fill="#2CD8ED" filter="url(#glow_backo)"/><circle cx="46" cy="130" r="3.2" fill="#E89917"/></g>
+<ellipse cx="128" cy="220" rx="57" ry="12" fill="#E89917" opacity="0.18"/>
+<g class="bot" filter="url(#shadow_backo)">
+  <path d="M91 65c-9-20-4-35 14-43 8 15 20 25 36 30-12 18-31 24-50 13z" fill="url(#body_backo)"/>
+  <path d="M165 65c9-20 4-35-14-43-8 15-20 25-36 30 12 18 31 24 50 13z" fill="url(#body_backo)"/>
+  <rect x="66" y="51" width="124" height="108" rx="46" fill="url(#body_backo)"/>
+  <rect x="78" y="64" width="100" height="77" rx="31" fill="url(#screen_backo)"/>
+  <path class="shine" d="M82 74c22-13 62-15 91 1" stroke="url(#glass_backo)" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="108" cy="106" r="12" fill="#2CD8ED"/><circle cx="148" cy="106" r="12" fill="#2CD8ED"/>
+  <circle cx="104" cy="101" r="4" fill="#FFFFFF" opacity="0.95"/><circle cx="144" cy="101" r="4" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M113 127c7 9 23 9 30 0" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <circle cx="94" cy="124" r="5.8" fill="#B5F236" opacity="0.78"/><circle cx="162" cy="124" r="5.8" fill="#B5F236" opacity="0.78"/>
+  <path d="M128 53V35" stroke="url(#accent_backo)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="128" cy="29" r="7" fill="#B5F236" filter="url(#glow_backo)"/>
+  <path d="M88 157c-18 9-29 24-33 43 11 7 26 4 33-6 4-13 9-23 18-31z" fill="url(#body_backo)" opacity="0.95"/>
+  <path d="M168 157c18 9 29 24 33 43-11 7-26 4-33-6-4-13-9-23-18-31z" fill="url(#body_backo)" opacity="0.95"/>
+  <rect x="88" y="145" width="80" height="64" rx="25" fill="url(#body_backo)"/>
+  <rect x="103" y="158" width="50" height="38" rx="19" fill="#FFFFFF" opacity="0.24"/>
+  <path d="M128 157l22 39-22-11-22 11z" fill="#FFFFFF" opacity="0.72"/>
+  <circle cx="128" cy="177" r="6.5" fill="#2CD8ED" filter="url(#glow_backo)"/>
+  <rect x="100" y="203" width="18" height="24" rx="9" fill="#2CD8ED"/><rect x="138" y="203" width="18" height="24" rx="9" fill="#B5F236"/>
+</g>
+<g class="prop" opacity="0.94"><rect x="166" y="100" width="42" height="14" rx="5" stroke="url(#accent_backo)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="166" y="118" width="42" height="14" rx="5" stroke="url(#accent_backo)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="176" cy="107" r="2.4" fill="url(#accent_backo)"/><circle cx="176" cy="125" r="2.4" fill="url(#accent_backo)"/></g>
+<g><rect x="18" y="18" width="92" height="27" rx="13.5" fill="#FFFFFF" opacity="0.72"/><text x="64" y="36" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="10.2" font-weight="800" fill="#E89917">Backo</text></g>
+</svg>

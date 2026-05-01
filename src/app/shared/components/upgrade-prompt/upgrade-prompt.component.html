@@ -1,0 +1,43 @@
+@if (variant() === 'modal') {
+  <!-- Modal overlay -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm"
+    (click)="dismiss()">
+    <div class="mx-4 w-full max-w-sm rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl"
+      (click)="$event.stopPropagation()">
+      <div class="mb-1 text-xs font-semibold uppercase tracking-wider text-cyan-400">Upgrade required</div>
+      <h2 class="mb-2 text-lg font-bold text-white">{{ messages[requiredPlan()].title }}</h2>
+      <p class="mb-5 text-sm text-slate-400">
+        <strong class="text-white">{{ feature() }}</strong> requires the {{ requiredPlan() | titlecase }} plan.
+        {{ messages[requiredPlan()].subtitle }}
+      </p>
+      <div class="flex gap-3">
+        <a routerLink="/pricing"
+          class="flex-1 rounded-lg bg-cyan-500 px-4 py-2.5 text-center text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400">
+          See plans
+        </a>
+        <button (click)="dismiss()"
+          class="rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-slate-400">
+          Not now
+        </button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- Inline banner -->
+  <div class="flex items-center justify-between gap-4 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3 text-sm">
+    <div class="flex items-center gap-2.5">
+      <span class="text-amber-400">&#9651;</span>
+      <span class="text-slate-300">
+        <strong class="text-white">{{ feature() }}</strong>
+        requires the <strong class="text-white">{{ requiredPlan() | titlecase }}</strong> plan.
+      </span>
+    </div>
+    <div class="flex shrink-0 items-center gap-2">
+      <a routerLink="/pricing"
+        class="rounded-lg bg-amber-500/20 px-3 py-1.5 font-semibold text-amber-400 transition-colors hover:bg-amber-500/30">
+        Upgrade
+      </a>
+      <button (click)="dismiss()" class="text-slate-500 transition-colors hover:text-slate-300">&#10005;</button>
+    </div>
+  </div>
+}

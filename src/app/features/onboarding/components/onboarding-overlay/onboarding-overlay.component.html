@@ -1,0 +1,63 @@
+<!-- Backdrop -->
+<div
+  class="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/60 px-4 backdrop-blur-sm dark:bg-black/70"
+  (click)="skip()"
+  aria-hidden="true"
+></div>
+
+<!-- Card -->
+<div
+  class="fixed inset-0 z-[201] flex items-center justify-center px-4 pointer-events-none"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="'Step ' + (step() + 1) + ' of ' + steps.length + ': ' + currentStep.title"
+>
+  <div
+    class="pointer-events-auto w-full max-w-md rounded-2xl border border-slate-200/80 bg-white/95 p-8 shadow-2xl backdrop-blur-md dark:border-white/[0.08] dark:bg-[#110f1e]/95"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Step icon -->
+    <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/20 to-violet-500/20 text-3xl dark:from-cyan-400/15 dark:to-violet-500/15" aria-hidden="true">
+      {{ currentStep.icon }}
+    </div>
+
+    <!-- Content -->
+    <h2 class="mb-2 text-xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+      {{ currentStep.title }}
+    </h2>
+    <p class="mb-8 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+      {{ currentStep.body }}
+    </p>
+
+    <!-- Step dots -->
+    <div class="mb-6 flex justify-center gap-2" aria-hidden="true">
+      @for (s of steps; track $index) {
+        <button
+          type="button"
+          class="h-2 rounded-full transition-all duration-300"
+          [class]="$index === step() ? 'w-6 bg-cyan-500' : 'w-2 bg-slate-300 dark:bg-slate-600'"
+          (click)="goToStep($index)"
+          [attr.aria-label]="'Go to step ' + ($index + 1)"
+        ></button>
+      }
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-between gap-3">
+      <button
+        type="button"
+        class="text-sm text-slate-400 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 rounded dark:text-slate-500 dark:hover:text-slate-300"
+        (click)="skip()"
+      >
+        Skip
+      </button>
+      <button
+        type="button"
+        class="rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"
+        (click)="next()"
+      >
+        {{ isLast ? 'Get started' : 'Next' }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<aside
+  class="fixed bottom-0 left-0 top-0 z-[90] flex flex-col border-r border-slate-200/80 bg-white/90 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0d0b18]/92"
+  style="width: var(--sidebar-w)"
+  aria-label="Application navigation"
+>
+  <!-- Top glass highlight -->
+  <div class="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-white/60 via-transparent to-white/20 dark:from-white/10 dark:to-white/[0.03]" aria-hidden="true"></div>
+
+  <!-- ─── Logo ─── -->
+  <div class="flex h-14 shrink-0 items-center gap-2.5 border-b border-slate-200/70 px-4 dark:border-white/[0.07]">
+    <img
+      [src]="logoSrc"
+      width="120"
+      height="32"
+      alt=""
+      role="presentation"
+      class="h-7 w-auto shrink-0 object-contain object-left"
+      decoding="async"
+    />
+  </div>
+
+  <!-- ─── Primary nav ─── -->
+  <nav class="flex flex-1 flex-col overflow-y-auto px-3 py-4" aria-label="Main">
+    <p class="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-600">Navigation</p>
+
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="nav-item-active"
+      class="nav-item mb-0.5"
+      ariaCurrentWhenActive="page"
+    >
+      <!-- Grid icon -->
+      <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+      </svg>
+      Dashboard
+    </a>
+
+    <a
+      routerLink="/agents"
+      routerLinkActive="nav-item-active"
+      class="nav-item mb-0.5"
+      ariaCurrentWhenActive="page"
+    >
+      <!-- Store icon -->
+      <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l1-5h16l1 5M3 9h18M3 9v11a1 1 0 001 1h16a1 1 0 001-1V9"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 21V12h6v9"/>
+      </svg>
+      Marketplace
+    </a>
+
+    <a
+      routerLink="/runs"
+      routerLinkActive="nav-item-active"
+      class="nav-item mb-0.5"
+      ariaCurrentWhenActive="page"
+    >
+      <!-- Clock icon -->
+      <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/>
+      </svg>
+      Run History
+    </a>
+
+    <a
+      routerLink="/billing"
+      routerLinkActive="nav-item-active"
+      class="nav-item mb-0.5"
+      ariaCurrentWhenActive="page"
+    >
+      <!-- Credit card icon -->
+      <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="2" y="5" width="20" height="14" rx="2"/>
+        <path stroke-linecap="round" d="M2 10h20"/>
+      </svg>
+      Billing
+    </a>
+
+    <!-- Quick launch -->
+    @if (quickLaunchAgents().length > 0) {
+      <div class="mt-5">
+        <p class="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-600">Quick Launch</p>
+        @for (item of quickLaunchAgents(); track item.slug) {
+          <a
+            [routerLink]="['/workspace', item.slug]"
+            routerLinkActive="nav-item-active"
+            class="nav-item mb-0.5"
+          >
+            <img
+              [src]="item.portraitSrc"
+              [alt]="item.agent?.name ?? item.slug"
+              width="20"
+              height="20"
+              class="h-5 w-5 shrink-0 rounded-full border border-slate-200/80 bg-white/60 object-contain p-0.5 dark:border-white/10 dark:bg-white/[0.05]"
+              loading="lazy"
+            />
+            <span class="truncate">{{ item.agent?.name ?? item.slug }}</span>
+          </a>
+        }
+      </div>
+    }
+  </nav>
+
+  <!-- ─── Bottom section ─── -->
+  <div class="shrink-0 border-t border-slate-200/70 px-3 py-3 dark:border-white/[0.07]">
+    <div class="flex items-center gap-3 px-1">
+      <app-theme-toggle [compact]="true" />
+      <!-- User avatar placeholder -->
+      <div
+        class="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/30 to-violet-500/30 text-[0.6rem] font-bold text-cyan-800 ring-2 ring-white/60 dark:from-cyan-500/25 dark:to-violet-500/25 dark:text-cyan-200 dark:ring-white/10"
+        aria-label="User account"
+        role="img"
+      >
+        AI
+      </div>
+    </div>
+  </div>
+</aside>

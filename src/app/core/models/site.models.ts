@@ -14,11 +14,14 @@ export interface Capability {
 	description: string;
 }
 
+export type AgentTier = 'free' | 'pro' | 'premium' | 'enterprise';
+
 export interface Agent {
 	slug: string;
 	name: string;
 	roleTitle: string;
 	category: AgentCategory;
+	tier: AgentTier;
 	categoryLabel: string;
 	/** One-line value prop (cards, hero subline). */
 	shortDescription: string;

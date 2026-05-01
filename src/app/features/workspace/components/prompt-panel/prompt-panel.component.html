@@ -1,0 +1,65 @@
+<div class="card-marketplace flex flex-col gap-5 p-5">
+
+  <!-- Textarea -->
+  <div>
+    <label
+      for="workspace-prompt"
+      class="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400"
+    >
+      Prompt
+    </label>
+    <textarea
+      id="workspace-prompt"
+      rows="8"
+      class="form-input w-full resize-none text-sm leading-relaxed"
+      placeholder="Describe what you need. The more context, the better the output."
+      [value]="prompt()"
+      (input)="onInput($event)"
+      [disabled]="isRunning()"
+      [attr.aria-busy]="isRunning()"
+    ></textarea>
+  </div>
+
+  <!-- Starter prompts -->
+  <div>
+    <p class="mb-2.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+      Starter prompts
+    </p>
+    <div class="flex flex-wrap gap-2">
+      @for (sp of starterPrompts(); track sp.id) {
+        <button
+          type="button"
+          class="rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-cyan-400/50 hover:bg-cyan-50/80 hover:text-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300 dark:hover:border-cyan-400/35 dark:hover:bg-cyan-500/10 dark:hover:text-cyan-300"
+          (click)="selectStarter(sp.text)"
+          [disabled]="isRunning()"
+          [attr.aria-label]="'Use starter: ' + sp.label"
+        >
+          {{ sp.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Run button -->
+  <button
+    type="button"
+    class="relative inline-flex min-h-[2.75rem] w-full items-center justify-center gap-2.5 overflow-hidden rounded-full border border-white/15 px-6 py-2.5 text-sm font-semibold tracking-wide text-white shadow-[0_4px_28px_-6px_rgba(34,211,238,0.5),0_14px_44px_-14px_rgba(124,58,237,0.45)] outline-none transition-[box-shadow,transform,opacity] focus-visible:ring-2 focus-visible:ring-cyan-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a14] disabled:cursor-not-allowed disabled:opacity-60 motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98]"
+    style="background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 60%, #d946ef 100%)"
+    (click)="onRun()"
+    [disabled]="isRunning() || !prompt().trim()"
+    [attr.aria-busy]="isRunning()"
+  >
+    @if (isRunning()) {
+      <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="40" stroke-dashoffset="10" opacity="0.3"/>
+        <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      Running…
+    } @else {
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Run agent
+    }
+  </button>
+</div>

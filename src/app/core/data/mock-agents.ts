@@ -1,6 +1,6 @@
-import type { Agent, AgentCategory, Capability } from '../models/site.models';
+import type { Agent, AgentCategory, AgentTier, Capability } from '../models/site.models';
 
-type AgentExtras = Partial<Pick<Agent, 'longDescription' | 'relatedKeywords' | 'skillDomains'>>;
+type AgentExtras = Partial<Pick<Agent, 'longDescription' | 'relatedKeywords' | 'skillDomains' | 'tier'>>;
 
 function agent(
 	slug: string,
@@ -26,12 +26,18 @@ function agent(
 	const relatedKeywords =
 		extras?.relatedKeywords ??
 		[name, roleTitle, categoryLabel, industryLabel, ...tools.slice(0, Math.min(4, tools.length))];
+
+	// Tier assignment: free-tier slugs are fronto and producto; all others default to pro
+	const FREE_SLUGS = new Set(['fronto', 'producto']);
+	const tier: AgentTier = extras?.tier ?? (FREE_SLUGS.has(slug) ? 'free' : 'pro');
+
 	return {
 		slug,
 		name,
 		roleTitle,
 		category,
 		categoryLabel,
+		tier,
 		shortDescription,
 		heroTagline,
 		longDescription,

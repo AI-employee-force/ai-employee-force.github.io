@@ -1,0 +1,76 @@
+@if (runs().length === 0) {
+  <div class="card-marketplace px-6 py-16 text-center">
+    <p class="text-slate-600 dark:text-slate-400">No runs match this filter.</p>
+  </div>
+} @else {
+  <div class="card-marketplace overflow-hidden p-0">
+    <!-- Desktop column headers -->
+    <div
+      class="hidden grid-cols-[2.5rem_1fr_1fr_110px_130px_90px] items-center gap-4 border-b border-slate-100/80 bg-slate-50/70 px-5 py-2.5 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-slate-400 dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-500 sm:grid"
+      aria-hidden="true"
+    >
+      <span></span>
+      <span>Agent</span>
+      <span>Prompt</span>
+      <span>Status</span>
+      <span>Timestamp</span>
+      <span></span>
+    </div>
+
+    <ul class="divide-y divide-slate-100/80 dark:divide-white/[0.06]" role="list">
+      @for (run of runs(); track run.id) {
+        <li
+          class="grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 px-5 py-3.5 transition-colors hover:bg-slate-50/60 dark:hover:bg-white/[0.02] sm:grid-cols-[2.5rem_1fr_1fr_110px_130px_90px]"
+        >
+          <!-- Avatar -->
+          <img
+            [src]="portraitSrc(run.agentSlug)"
+            alt=""
+            role="presentation"
+            width="36"
+            height="36"
+            class="h-9 w-9 rounded-full border border-slate-200 bg-white/60 object-contain p-1 dark:border-white/10 dark:bg-white/[0.05]"
+            loading="lazy"
+          />
+
+          <!-- Agent name + role -->
+          <div class="min-w-0">
+            <p class="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">
+              {{ run.agentName }}
+            </p>
+            <p class="truncate text-xs text-slate-500 dark:text-slate-400">
+              {{ agentMap().get(run.agentSlug)?.roleTitle ?? '' }}
+            </p>
+          </div>
+
+          <!-- Prompt preview (hidden on mobile) -->
+          <p class="hidden min-w-0 truncate text-sm text-slate-600 dark:text-slate-400 sm:block">
+            {{ run.promptPreview }}
+          </p>
+
+          <!-- Status badge (hidden on mobile) -->
+          <div class="hidden sm:flex">
+            <app-run-status-badge [status]="run.status" />
+          </div>
+
+          <!-- Timestamp (hidden on mobile) -->
+          <time
+            [attr.datetime]="run.timestamp"
+            class="hidden shrink-0 text-xs text-slate-500 dark:text-slate-400 sm:block"
+          >
+            {{ formatTime(run.timestamp) }}
+          </time>
+
+          <!-- Reopen -->
+          <a
+            [routerLink]="['/workspace', run.agentSlug]"
+            class="shrink-0 rounded-full border border-slate-200 bg-white/60 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-cyan-400/50 hover:text-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300 dark:hover:border-cyan-400/35 dark:hover:text-cyan-300"
+            [attr.aria-label]="'Reopen run with ' + run.agentName"
+          >
+            Reopen
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+}

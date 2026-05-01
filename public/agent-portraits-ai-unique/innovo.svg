@@ -1,0 +1,103 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Innovo unique modern AI bot">
+<defs>
+  <linearGradient id="card_innovo" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#C7F2FB"/>
+    <stop offset="54%" stop-color="#FFFFFF"/>
+    <stop offset="100%" stop-color="#BEBFF9"/>
+  </linearGradient>
+  <linearGradient id="accent_innovo" x1="44" y1="34" x2="214" y2="222" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#318BF6"/>
+    <stop offset="45%" stop-color="#25EF27"/>
+    <stop offset="100%" stop-color="#CB52F4"/>
+  </linearGradient>
+  <linearGradient id="shell_innovo" x1="68" y1="42" x2="188" y2="214" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#A9EBF9"/>
+    <stop offset="30%" stop-color="#318BF6"/>
+    <stop offset="68%" stop-color="#25EF27"/>
+    <stop offset="100%" stop-color="#11882A"/>
+  </linearGradient>
+  <linearGradient id="visor_innovo" x1="82" y1="64" x2="174" y2="142" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#11882A"/>
+    <stop offset="52%" stop-color="#25EF27"/>
+    <stop offset="100%" stop-color="#40F7B0"/>
+  </linearGradient>
+  <linearGradient id="glass_innovo" x1="76" y1="58" x2="180" y2="146" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+    <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+  </linearGradient>
+  <radialGradient id="halo_innovo" cx="50%" cy="35%" r="68%">
+    <stop offset="0%" stop-color="#318BF6" stop-opacity="0.42"/>
+    <stop offset="46%" stop-color="#25EF27" stop-opacity="0.14"/>
+    <stop offset="100%" stop-color="#CB52F4" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="shadow_innovo" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="18" stdDeviation="13" flood-color="#11882A" flood-opacity="0.25"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#318BF6" flood-opacity="0.22"/>
+  </filter>
+  <filter id="glow_innovo" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <style>
+    .avatar { animation: float 4.4s ease-in-out infinite; transform-origin: 128px 132px; }
+    .ring { animation: orbit 8s linear infinite; transform-origin: 128px 128px; }
+    .prop { animation: prop 3.6s ease-in-out infinite; transform-origin: 194px 124px; }
+    .scan { animation: scan 2.8s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes prop { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+    @keyframes scan { 0%,100% { opacity:.16; transform: translateY(-8px); } 50% { opacity:.62; transform: translateY(10px); } }
+  </style>
+</defs>
+
+<rect width="256" height="256" rx="44" fill="url(#card_innovo)"/>
+<circle cx="128" cy="118" r="98" fill="url(#halo_innovo)"/>
+<g opacity="0.42">
+  <path d="M37 78h182M31 128h194M44 178h168" stroke="#FFFFFF" stroke-width="1"/>
+  <path d="M78 34v186M128 24v204M178 36v184" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g class="ring" opacity="0.68">
+  <ellipse cx="128" cy="128" rx="88" ry="36" fill="none" stroke="url(#accent_innovo)" stroke-width="2.2" stroke-dasharray="22 12"/>
+  <circle cx="211" cy="128" r="4.2" fill="#318BF6" filter="url(#glow_innovo)"/>
+  <circle cx="45" cy="128" r="2.5" fill="#CB52F4"/>
+</g>
+<ellipse cx="128" cy="219" rx="56" ry="11" fill="#11882A" opacity="0.20"/>
+
+<g class="avatar" filter="url(#shadow_innovo)">
+  <path d="M86 70c-8-20-1-36 18-44 8 16 20 26 38 31-12 18-35 25-56 13z" fill="url(#shell_innovo)" opacity=".94"/>
+  <path d="M170 70c8-20 1-36-18-44-8 16-20 26-38 31 12 18 35 25 56 13z" fill="url(#shell_innovo)" opacity=".94"/>
+  <rect x="62" y="52" width="132" height="108" rx="44" fill="url(#shell_innovo)"/>
+  <rect x="74" y="63" width="108" height="80" rx="32" fill="url(#visor_innovo)" opacity=".97"/>
+  <rect x="79" y="68" width="98" height="26" rx="13" fill="url(#glass_innovo)"/>
+  <rect class="scan" x="80" y="92" width="96" height="10" rx="5" fill="#318BF6" opacity=".38"/>
+  <circle cx="107" cy="107" r="13" fill="#318BF6"/>
+  <circle cx="149" cy="107" r="13" fill="#318BF6"/>
+  <circle cx="103" cy="102" r="4" fill="#FFFFFF" opacity=".94"/>
+  <circle cx="145" cy="102" r="4" fill="#FFFFFF" opacity=".94"/>
+  <path d="M112 128c8 10 24 10 32 0" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <circle cx="93" cy="125" r="6" fill="#CB52F4" opacity=".74"/>
+  <circle cx="163" cy="125" r="6" fill="#CB52F4" opacity=".74"/>
+  <path d="M128 53V34" stroke="url(#accent_innovo)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="128" cy="28" r="7" fill="#CB52F4" filter="url(#glow_innovo)"/>
+
+  <path d="M88 156c-18 8-29 24-33 44 11 8 27 4 33-6 4-14 9-24 18-31z" fill="url(#shell_innovo)" opacity=".94"/>
+  <path d="M168 156c18 8 29 24 33 44-11 8-27 4-33-6-4-14-9-24-18-31z" fill="url(#shell_innovo)" opacity=".94"/>
+  <rect x="88" y="145" width="80" height="64" rx="24" fill="url(#shell_innovo)"/>
+  <rect x="104" y="159" width="48" height="36" rx="18" fill="#FFFFFF" opacity=".28"/>
+  <path d="M128 158l22 38-22-11-22 11z" fill="#FFFFFF" opacity=".72"/>
+  <circle cx="128" cy="178" r="7" fill="#318BF6" filter="url(#glow_innovo)"/>
+  <rect x="100" y="203" width="18" height="24" rx="9" fill="#318BF6"/>
+  <rect x="138" y="203" width="18" height="24" rx="9" fill="#CB52F4"/>
+</g>
+
+<g class="prop" opacity=".98">
+  <path d="M189 103c9 0 16 7 16 16 0 6-3 11-8 14v8h-14v-8c-5-3-8-8-8-14 0-9 7-16 14-16z" stroke="url(#accent_innovo)" stroke-width="4" stroke-linejoin="round" fill="none"/>
+  <path d="M184 141h10" stroke="url(#accent_innovo)" stroke-width="4" stroke-linecap="round"/>
+</g>
+
+<g>
+  <rect x="18" y="18" width="90" height="27" rx="13.5" fill="#FFFFFF" opacity=".68"/>
+  <text x="63" y="36" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="10.4" font-weight="800" fill="#11882A">Innovo</text>
+</g>
+</svg>
